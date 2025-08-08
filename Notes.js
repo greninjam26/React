@@ -33,6 +33,12 @@ React:
         even though it looks like html but it is an extension of javascript
         the extensions have babel that converse JSX to javascript
         each JSX is converted to a React.createElement function call
+        RULES:
+          1. JSX works very similar to HTML
+          2. {} this turn on javascript mode, so we can write javascript code in {}, 
+            any expressions can be in there
+            for, switch, if/else don't work
+          3. JSX returns a javascript expression
     Component-based:
       WHY:
         because as web development evolve over time, javascript is taking over most of the logic and HTML is rely in javascript. 
