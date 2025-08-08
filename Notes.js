@@ -52,6 +52,20 @@ React:
                 each component can only return a only element(like return <h1>Hello React!</h1>)
                 the only way to fix this is wrapping eveything need to be returned in a <div>
           4. we need to nest components but Never NEVER nest component declarations in each other(it works but don't do it)
+        data: 
+          1. Props:
+            data that is coming from the parent components
+            RULE: we can NOT change props
+              If we change the parent element data, the create a side effect that can break React
+            One Way Data Flow:
+              this lead to React can only pass data from parent to child and not backward
+              WHY?
+                this make the application more predictable and easier to understand and debug
+                this is also better for performance
+          2. State: 
+            internal data that can be updated by component logic
+        logic: 
+        appearance: 
     State-driven:
       piece of data = piece of state
       base on the inital state React will render an UI
