@@ -32,6 +32,18 @@ React:
     Component-based:
       react take different components and put them together to create the web page
       so we only need to build the components for the web page
+      components:
+        each component have its own data, logic, and appearance
+        nested components are used a lot
+        we can also reuse components to create duplicated components
+        components are create by using function(they are just functions)
+        RULES:
+          1. Capitalize the first letter of the function name
+          2. we always need to return some markUp(html code) or null
+          3. we need to include it to the App Component and when the App is rendered 
+                each component can only return a only element(like return <h1>Hello React!</h1>)
+                the only way to fix this is wrapping eveything need to be returned in a <div>
+          4. we need to nest components but Never NEVER nest component declarations in each other(it works but don't do it)
     State-driven:
       piece of data = piece of state
       base on the inital state React will render an UI
@@ -45,4 +57,9 @@ React:
     Create by fackbook(Meta):
       Create by Jordan Walke in 2011
       in 2013 it is open sourced
+
+Debugging:
+  if the app is not updating
+    1. check if the app is running or not
+    2. restart the app
 */
