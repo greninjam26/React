@@ -24,11 +24,15 @@ React:
   What it is:
     Extremely Popular:
       Most used framework on npm
-    Declarative:
+    Declarative(we only need to tell javascript what the web should look like and not how to make it look like that):
       we describe how each component looks like through a declarative syntax called JSX
       with this we don't work with the DOM at all, we just tell React what the page should look like, and React with deal with the rest
       JSX:
+        Declarative syntax to describe what the components looks like and how they work
         this is a syntax that combines HTML, CSS, Javascript, and access other React Components
+        even though it looks like html but it is an extension of javascript
+        the extensions have babel that converse JSX to javascript
+        each JSX is converted to a React.createElement function call
     Component-based:
       react take different components and put them together to create the web page
       so we only need to build the components for the web page
