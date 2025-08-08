@@ -62,6 +62,9 @@ React:
       Create by Jordan Walke in 2011
       in 2013 it is open sourced
 
+Strict Mode:
+  all the components are usually rendered twice
+
 Debugging:
   if the app is not updating
     1. check if the app is running or not

@@ -75,10 +75,23 @@ function Menu() {
 }
 
 function Footer() {
+	const curTime = new Date().toLocaleTimeString();
+	const curHour = new Date().getHours();
+	const openHour = 12;
+	const closeHour = 22;
+	let state = "We're currently closed";
+
+	if (curHour >= openHour && curHour <= closeHour) {
+		state = "We're currently open!";
+	}
 	// this works jsut a mess
 	// return React.createElement("footer", null, "We're currently open!");
 	// JSX is better
-	return <footer>{new Date().toLocaleTimeString()}, We're currently open!</footer>;
+	return (
+		<footer>
+			{curTime}, {state}
+		</footer>
+	);
 }
 
 function Pizza() {
