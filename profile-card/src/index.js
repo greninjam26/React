@@ -36,11 +36,19 @@ function Intro() {
 function Skills() {
 	return (
 		<ul className="skill-list">
-			<li className="skill">Special Form</li>
-			<li className="skill">Water and Dark Type</li>
-			<li className="skill">Water Shuriken</li>
-			<li className="skill">Bond Coonection</li>
+			<Skill skill="Special Form" bc="green" />
+			<Skill skill="Water and Dark Type" bc="blue" />
+			<Skill skill="Water Shuriken" bc="aqua" />
+			<Skill skill="Bond Coonection" bc="yellow" />
 		</ul>
+	);
+}
+
+function Skill(props) {
+	return (
+		<li className="skill" style={{ backgroundColor: props.bc }}>
+			{props.skill}
+		</li>
 	);
 }
 
