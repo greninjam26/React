@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDom from "react-dom/client";
+import "./index.css";
 
 const pizzaData = [
 	{
@@ -48,7 +49,7 @@ const pizzaData = [
 
 function App() {
 	return (
-		<div>
+		<div className="container">
 			<Header />
 			<Menu />
 			<Footer />
@@ -57,12 +58,20 @@ function App() {
 }
 
 function Header() {
-	return <h1>Fast React Pizza Co.</h1>;
+	// inline css style
+	// const style = { color: "red", fontSize: "3.2rem" };
+	// return <h1 style={style}>Fast React Pizza Co.</h1>;
+	// CSS file with className is easier
+	return (
+		<header className="header">
+			<h1>Fast React Pizza Co.</h1>
+		</header>
+	);
 }
 
 function Menu() {
 	return (
-		<div>
+		<main className="menu">
 			<h2>Our Menu</h2>
 			<Pizza />
 			<Pizza />
@@ -70,7 +79,7 @@ function Menu() {
 			<Pizza />
 			<Pizza />
 			<Pizza />
-		</div>
+		</main>
 	);
 }
 
@@ -88,7 +97,7 @@ function Footer() {
 	// return React.createElement("footer", null, "We're currently open!");
 	// JSX is better
 	return (
-		<footer>
+		<footer className="footer">
 			{curTime}, {state}
 		</footer>
 	);
@@ -98,7 +107,7 @@ function Pizza() {
 	return (
 		<div>
 			<img src="pizzas/focaccia.jpg" alt="Focaccia" />
-			<h2>Focaccia</h2>
+			<h3>Focaccia</h3>
 			<p>Bread with italian olive oil and rosemary</p>
 		</div>
 	);
