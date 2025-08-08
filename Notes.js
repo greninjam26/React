@@ -34,6 +34,10 @@ React:
         the extensions have babel that converse JSX to javascript
         each JSX is converted to a React.createElement function call
     Component-based:
+      WHY:
+        because as web development evolve over time, javascript is taking over most of the logic and HTML is rely in javascript. 
+        This lead the questions if they are interconnected together why should we keep they apart?
+        then lead the creation of the JSX and React which have all the code in HTML, CSS, and Javascript in one file. 
       react take different components and put them together to create the web page
       so we only need to build the components for the web page
       components:
