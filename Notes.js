@@ -87,4 +87,8 @@ Debugging:
   if the app is not updating
     1. check if the app is running or not
     2. restart the app
+
+Create React App:
+  Create React App:
+    npx create-react-app [file name]
 */
