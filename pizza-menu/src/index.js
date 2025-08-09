@@ -137,7 +137,7 @@ function Pizza({ pizzaObj }) {
 function Footer() {
 	// const curTime = new Date().toLocaleTimeString();
 	const curHour = new Date().getHours();
-	const openHour = 22;
+	const openHour = 11;
 	const closeHour = 22;
 	const isOpen = curHour >= openHour && curHour <= closeHour;
 	// const isOpen = false;
