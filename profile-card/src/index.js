@@ -57,12 +57,18 @@ function Info({ infoObj }) {
 			className="info"
 			style={{ backgroundColor: infoObj.bColor, color: infoObj.color }}
 		>
-			<span>
+			{/* <span>
 				{infoObj.topic === "type"
 					? "🩵"
 					: infoObj.topic === "special"
 					? "🔥"
 					: "💦"}
+			</span> */}
+			{/* we can also do this */}
+			<span>
+				{infoObj.topic === "type" && "🩵"}
+				{infoObj.topic === "special" && "🔥"}
+				{infoObj.topic === "normal" && "💦"}
 			</span>
 			<span>{infoObj.info}</span>
 		</li>
