@@ -83,6 +83,8 @@ React:
             How to use it?
               const [//State Variable//, //the function sets the state variable(usually called set[name])//] = useState(//the default value of the state variable//);
               NEVER mutate the State Variables, always use the set function comes with it
+              when setting the state and we are using the current state to set the new value we need to pass the new value in as a callback function, so the current state will always be updated
+                Like this: setStep(s => s - 1);
         logic: 
         appearance: 
     State-driven:
