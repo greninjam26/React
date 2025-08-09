@@ -113,15 +113,15 @@ function Menu() {
 	);
 }
 
-function Pizza(props) {
-	if (props.pizzaObj.soldOut) return null;
+function Pizza({ pizzaObj }) {
+	if (pizzaObj.soldOut) return null;
 	return (
 		<li className="pizza">
-			<img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+			<img src={pizzaObj.photoName} alt={pizzaObj.name} />
 			<div>
-				<h3>{props.pizzaObj.name}</h3>
-				<p>{props.pizzaObj.ingredients}</p>
-				<span>{props.pizzaObj.price}</span>
+				<h3>{pizzaObj.name}</h3>
+				<p>{pizzaObj.ingredients}</p>
+				<span>{pizzaObj.price}</span>
 			</div>
 		</li>
 	);
@@ -130,7 +130,7 @@ function Pizza(props) {
 function Footer() {
 	// const curTime = new Date().toLocaleTimeString();
 	const curHour = new Date().getHours();
-	const openHour = 12;
+	const openHour = 22;
 	const closeHour = 22;
 	const isOpen = curHour >= openHour && curHour <= closeHour;
 	// const isOpen = false;
@@ -145,8 +145,8 @@ function Footer() {
 			) : (
 				<div className="order">
 					<p>
-						We're closed at {closeHour}:00. We will be open at {openHour}:00
-						by tomorrow.
+						We're closed at {closeHour}:00. We will be open at {openHour}:00,{" "}
+						{curHour < openHour ? "today" : "tomorrow"}.
 					</p>
 				</div>
 			)}
@@ -154,10 +154,10 @@ function Footer() {
 	);
 }
 
-function Order(props) {
+function Order({ closeHour }) {
 	return (
 		<div className="order">
-			<p>We're open util {props.closeHour}:00. Come visit us or order online.</p>
+			<p>We're open util {closeHour}:00. Come visit us or order online.</p>
 			<button className="btn">Order</button>
 		</div>
 	);
