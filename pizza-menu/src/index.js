@@ -74,23 +74,30 @@ function Menu() {
 	return (
 		<main className="menu">
 			<h2>Our Menu</h2>
+
 			{/* don't use && too much, it can put a 0 on the UI */}
 			{/* this is better, but need else */}
 			{numPizzas > 0 ? (
-				<ul className="pizzas">
-					{pizzaData.map(pizza => (
-						<Pizza
-							// don't do this
-							// name={pizza.name}
-							// ingredients={pizza.ingredients}
-							// imagePath={pizza.photoName}
-							// price={pizza.price}
-							// do this
-							pizzaObj={pizza}
-							key={pizza.name}
-						/>
-					))}
-				</ul>
+				<React.Fragment>
+					<p>
+						Authentic Italian cuisine. 6 creative dishes to choose from. All
+						from our stone oven, all organic, all delicious.
+					</p>
+					<ul className="pizzas">
+						{pizzaData.map(pizza => (
+							<Pizza
+								// don't do this
+								// name={pizza.name}
+								// ingredients={pizza.ingredients}
+								// imagePath={pizza.photoName}
+								// price={pizza.price}
+								// do this
+								pizzaObj={pizza}
+								key={pizza.name}
+							/>
+						))}
+					</ul>
+				</React.Fragment>
 			) : (
 				<p>
 					We're still working on the Online Menu place come back later or go to

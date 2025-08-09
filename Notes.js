@@ -89,6 +89,11 @@ React:
 Rending List:
   Rendering a components for each element of the array
 
+React Fragment:
+  this let us to be able to group html elements without wrapping them in another element or leaving any trace of the wrapping in HTML
+  to archieve this by wrapping the elements in <>[elements]</>
+  if we need to have a key in the fragment then we need to do this <React.fragment>[elements]</React.fragment>
+
 Strict Mode:
   all the components are usually rendered twice
 
