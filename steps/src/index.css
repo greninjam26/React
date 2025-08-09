@@ -1,0 +1,97 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-family: sans-serif;
+	color: #333;
+}
+
+.steps {
+	width: 60rem;
+	background-color: #f7f7f7;
+	border-radius: 7px;
+	padding: 2.5rem 10rem;
+	margin: 10rem auto;
+}
+
+.numbers {
+	display: flex;
+	justify-content: space-between;
+}
+
+.numbers > div {
+	height: 4rem;
+	aspect-ratio: 1;
+	background-color: #e7e7e7;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.8rem;
+}
+
+.numbers .active {
+	background-color: #7950f2;
+	color: #fff;
+}
+
+.message {
+	text-align: center;
+	font-size: 2rem;
+	font-weight: bold;
+	margin: 4rem 0;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-between;
+}
+
+.buttons button {
+	border: none;
+	cursor: pointer;
+	padding: 1rem 1.5rem;
+	border-radius: 10rem;
+	font-size: 1.4rem;
+	font-weight: bold;
+
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.buttons button span {
+	font-size: 1.6rem;
+	line-height: 1;
+}
+
+h3 {
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.close {
+	position: absolute;
+	top: 1.6rem;
+	right: 1.6rem;
+	border: none;
+	background: none;
+	color: inherit;
+	font-size: 4rem;
+	cursor: pointer;
+}
+
+.close:hover {
+	color: #7950f2;
+}
