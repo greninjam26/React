@@ -77,8 +77,12 @@ React:
               State Variable/Piece of state : means the singular state a piece of data
               But these three are used interchangeably
             Whenever a piece of state is change React will re-render the component
+              Re-Render:
+                in simple terms is that when React need to re-render the component, React will call the component again
+                as long as the component exist, all the state will be preserved through out the process of Render and Re-Rendering
             How to use it?
               const [//State Variable//, //the function sets the state variable(usually called set[name])//] = useState(//the default value of the state variable//);
+              NEVER mutate the State Variables, always use the set function comes with it
         logic: 
         appearance: 
     State-driven:
