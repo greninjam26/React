@@ -70,6 +70,15 @@ React:
                 this is also better for performance
           2. State: 
             internal data that can be updated by component logic
+            What is it?
+              it is the data that the component hold over time(component's memory)
+            Notes:
+              State: meaning all the states
+              State Variable/Piece of state : means the singular state a piece of data
+              But these three are used interchangeably
+            Whenever a piece of state is change React will re-render the component
+            How to use it?
+              const [//State Variable//, //the function sets the state variable(usually called set[name])//] = useState(//the default value of the state variable//);
         logic: 
         appearance: 
     State-driven:
