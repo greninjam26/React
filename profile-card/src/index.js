@@ -2,13 +2,21 @@ import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 
+const infoList = [
+	{ info: "Water Type", topic: "type", bColor: "#2b6bca", color: "#fff" },
+	{ info: "Dark Type", topic: "type", bColor: "#21004f", color: "#fff" },
+	{ info: "Water Shuriken", topic: "normal", bColor: "#0000ff", color: "#fff" },
+	{ info: "Special Form", topic: "special", bColor: "#ff0000", color: "#fff" },
+	{ info: "Big Water Shuriken", topic: "special", bColor: "aqua" },
+];
+
 export function App() {
 	return (
 		<main className="card">
 			<Avatar />
 			<div className="data">
 				<Intro />
-				<Skills />
+				<Infos />
 			</div>
 		</main>
 	);
@@ -33,21 +41,30 @@ function Intro() {
 	);
 }
 
-function Skills() {
+function Infos() {
 	return (
-		<ul className="skill-list">
-			<Skill skill="Special Form" bc="green" />
-			<Skill skill="Water and Dark Type" bc="blue" />
-			<Skill skill="Water Shuriken" bc="aqua" />
-			<Skill skill="Bond Coonection" bc="yellow" />
+		<ul className="info-list">
+			{infoList.map(info => (
+				<Info infoObj={info} key={info.info} />
+			))}
 		</ul>
 	);
 }
 
-function Skill(props) {
+function Info({ infoObj }) {
 	return (
-		<li className="skill" style={{ backgroundColor: props.bc }}>
-			{props.skill}
+		<li
+			className="info"
+			style={{ backgroundColor: infoObj.bColor, color: infoObj.color }}
+		>
+			<span>
+				{infoObj.topic === "type"
+					? "🩵"
+					: infoObj.topic === "special"
+					? "🔥"
+					: "💦"}
+			</span>
+			<span>{infoObj.info}</span>
 		</li>
 	);
 }
