@@ -70,23 +70,33 @@ function Header() {
 }
 
 function Menu() {
+	const numPizzas = pizzaData?.length;
 	return (
 		<main className="menu">
 			<h2>Our Menu</h2>
-			<ul className="pizzas">
-				{pizzaData.map(pizza => (
-					<Pizza
-						// don't do this
-						// name={pizza.name}
-						// ingredients={pizza.ingredients}
-						// imagePath={pizza.photoName}
-						// price={pizza.price}
-						// do this
-						pizzaObj={pizza}
-						key={pizza.name}
-					/>
-				))}
-			</ul>
+			{/* don't use && too much, it can put a 0 on the UI */}
+			{/* this is better, but need else */}
+			{numPizzas > 0 ? (
+				<ul className="pizzas">
+					{pizzaData.map(pizza => (
+						<Pizza
+							// don't do this
+							// name={pizza.name}
+							// ingredients={pizza.ingredients}
+							// imagePath={pizza.photoName}
+							// price={pizza.price}
+							// do this
+							pizzaObj={pizza}
+							key={pizza.name}
+						/>
+					))}
+				</ul>
+			) : (
+				<p>
+					We're still working on the Online Menu place come back later or go to
+					the physical store.
+				</p>
+			)}
 			{/* <Pizza
 				name="Focaccia"
 				ingredients="Bread with italian olive oil and rosemary"
@@ -104,6 +114,7 @@ function Menu() {
 }
 
 function Pizza(props) {
+	if (props.pizzaObj.soldOut) return null;
 	return (
 		<li className="pizza">
 			<img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
@@ -117,21 +128,30 @@ function Pizza(props) {
 }
 
 function Footer() {
-	const curTime = new Date().toLocaleTimeString();
+	// const curTime = new Date().toLocaleTimeString();
 	const curHour = new Date().getHours();
 	const openHour = 12;
 	const closeHour = 22;
-	let state = "We're currently closed";
+	const isOpen = curHour >= openHour && curHour <= closeHour;
 
-	if (curHour >= openHour && curHour <= closeHour) {
-		state = "We're currently open!";
-	}
 	// this works jsut a mess
 	// return React.createElement("footer", null, "We're currently open!");
 	// JSX is better
 	return (
 		<footer className="footer">
-			{curTime}, {state}
+			{isOpen ? (
+				<div className="order">
+					<p>We're open util {closeHour}:00. Come visit us or order online.</p>
+					<button className="btn">Order</button>
+				</div>
+			) : (
+				<div className="order">
+					<p>
+						We're closed at {closeHour}:00. We will be open at {openHour}:00
+						by tomorrow.
+					</p>
+				</div>
+			)}
 		</footer>
 	);
 }
