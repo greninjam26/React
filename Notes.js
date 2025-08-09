@@ -94,6 +94,14 @@ React Fragment:
   to archieve this by wrapping the elements in <>[elements]</>
   if we need to have a key in the fragment then we need to do this <React.fragment>[elements]</React.fragment>
 
+Listening for Event:
+  similar to HTML inline but modified for JSX
+  Instead of eventlisteners we are adding them as events in the JSX return of the components
+  the "function" is usually defined on the component then called in the {}
+  Examples:
+    onClick={[function]}
+    mouseEnter={[function]}
+
 Strict Mode:
   all the components are usually rendered twice
 
