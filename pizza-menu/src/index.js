@@ -133,6 +133,7 @@ function Footer() {
 	const openHour = 12;
 	const closeHour = 22;
 	const isOpen = curHour >= openHour && curHour <= closeHour;
+	// const isOpen = false;
 
 	// this works jsut a mess
 	// return React.createElement("footer", null, "We're currently open!");
@@ -140,10 +141,7 @@ function Footer() {
 	return (
 		<footer className="footer">
 			{isOpen ? (
-				<div className="order">
-					<p>We're open util {closeHour}:00. Come visit us or order online.</p>
-					<button className="btn">Order</button>
-				</div>
+				<Order closeHour={closeHour} />
 			) : (
 				<div className="order">
 					<p>
@@ -153,6 +151,15 @@ function Footer() {
 				</div>
 			)}
 		</footer>
+	);
+}
+
+function Order(props) {
+	return (
+		<div className="order">
+			<p>We're open util {props.closeHour}:00. Come visit us or order online.</p>
+			<button className="btn">Order</button>
+		</div>
 	);
 }
 
