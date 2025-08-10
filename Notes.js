@@ -85,6 +85,15 @@ React:
               NEVER mutate the State Variables, always use the set function comes with it
               when setting the state and we are using the current state to set the new value we need to pass the new value in as a callback function, so the current state will always be updated
                 Like this: setStep(s => s - 1);
+          SUMMARY:
+            State is internal data owned by the component
+            Props is external data owned by the parent component
+            State is like the component's memory, which contains all it needs to know
+            Props is like a function parameters that build a connection between the parent and child component
+            State can be updated by the component and when it is updated it will trigger React to re-render the component
+            Props is read-only the component can't mutate the value but when the parent component update their state, and the props updates, it will also trigger re-rendering of the component
+            State is used to make the component interactive
+            Props is used by the parent component to config the child components
         logic: 
         appearance: 
     State-driven:
