@@ -138,6 +138,38 @@ Controlled Elements:
 Strict Mode:
   all the components are usually rendered twice
 
+Thinking in React:
+  have the React mindset
+  think about components, states, data flow, effects
+  thinking in data transition and but data mutation
+  STEPS:
+    1. break the desired UI into different components and establish the component tree
+    2. build a static version of the component in React
+    State Management:
+      3. think about states
+        when to use it
+        type of state: local or global
+          Local State:
+            they are only access to the compoent it is created in and all its child components through props
+            they are states that only needed by a few components
+            NOTE: we should always start with local states and only change it global when we really need it
+          Global State:
+            we need external libaray to help to organize these
+            these are the states that many component in the app need
+            it is also called Shared State, which means all the component can access it. 
+        where to place each state
+      4. establish data flow
+        one-way data flow
+        child-to-parent communication
+        how to access the global states
+
+State Management:
+  deciding 
+    when to create a piece of state
+    what type of state are necessary
+    where to place each piece of state
+    how data flow through the app
+
 Debugging:
   if the app is not updating
     1. check if the app is running or not
