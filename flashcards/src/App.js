@@ -36,7 +36,7 @@ const questions = [
 
 export default function App() {
 	return (
-		<div className="flashcards">
+		<div className="app">
 			<FlashCards />
 		</div>
 	);
@@ -44,11 +44,11 @@ export default function App() {
 
 function FlashCards() {
 	return (
-		<>
+		<div className="flashcards">
 			{questions.map(question => (
 				<FlashCard question={question} key={question.id} />
 			))}
-		</>
+		</div>
 	);
 }
 
