@@ -153,7 +153,7 @@ Thinking in React:
             they are only access to the compoent it is created in and all its child components through props
             they are states that only needed by a few components
             when we create a piece of local state and there are sibling components that need it, then we need to lift the state up to allow sibing components to access it. 
-              Lifting up:
+              Lifting state up:
                 this basicly is move the state declaration from one component to its closest parent component then the state can be passed into all the child components through props
             NOTE: we should always start with local states and only change it global when we really need it
           Global State:
