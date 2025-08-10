@@ -165,7 +165,12 @@ Thinking in React:
         one-way data flow
         child-to-parent communication
         how to access the global states
-
+  TERMS:
+    Derived State:
+      state that is computed from existing states
+      Benefit:
+        by derive states from existing state, this allows us to update one state and all the derived states will also update, and this way the component will only re-render once and we don't need to manually update all the states together all the time
+  
 State Management:
   deciding 
     when to create a piece of state
