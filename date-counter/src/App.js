@@ -30,18 +30,24 @@ function Counter() {
 		setCount(+e.target.value);
 	}
 
-	function handleClick() {
+	function handleReset() {
 		setCount(0);
 		setStep(1);
 	}
 
 	return (
 		<>
-			<input type="range" min="0" max="10" value={step} onChange={handleChangeStep} />
+			<input
+				type="range"
+				min="0"
+				max="10"
+				value={step}
+				onChange={handleChangeStep}
+			/>
 			<span>Step: {step}</span>
 			<br />
 			<button onClick={decreaseCount}>-</button>
-			<input value={count} onChange={handleChangeCount}/>
+			<input type="text" value={count} onChange={handleChangeCount} />
 			<button onClick={increaseCount}>+</button>
 			<p>
 				{count < 0 &&
@@ -54,12 +60,11 @@ function Counter() {
 						count === 1 ? "Tomorrow" : `${count} days from today`
 					} is ${date.toDateString()}`}
 			</p>
-			<button
-				style={count === 0 ? { display: "hidden" } : null}
-				onClick={handleClick}
-			>
-				Reset
-			</button>
+			{(count !== 0 || step !== 1) && (
+				<div>
+					<button onClick={handleReset}>Reset</button>
+				</div>
+			)}
 		</>
 	);
 }
