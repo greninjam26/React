@@ -117,6 +117,15 @@ Listening for Event:
     onClick={[function]}
     mouseEnter={[function]}
 
+Controlled Elements:
+  What to use on:
+    Input Fields and Select elements have their states stored in the DOM, but we want to have them in the code
+  How it Works:
+    1. create piece of state
+    2. we need to set the value to the state(tell React to send the state to the DOM)
+    3. we need to get the state from the DOM when there is a new value
+      have this on an input field: onChange={e => setDescription(e.target.value)}
+
 Strict Mode:
   all the components are usually rendered twice
 
