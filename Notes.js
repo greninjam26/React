@@ -68,6 +68,9 @@ React:
               WHY?
                 this make the application more predictable and easier to understand and debug
                 this is also better for performance
+            Child Props:
+              it is props that a component automaticly recieves
+              the value is what is between the open tag and the close tag of the component
           2. State: 
             internal data that can be updated by component logic
             What is it?
