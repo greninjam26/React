@@ -34,9 +34,6 @@ export default function App() {
 	const [splitingBill, setSplitingBill] = useState(false);
 	const [friends, setFriends] = useState(initialFriends);
 	const [selectedFriend, setSelectedFriend] = useState({});
-	const [bill, setBill] = useState(0);
-	const [myBill, setMyBill] = useState(0);
-	const [whoPaid, setWhoPaid] = useState("You");
 
 	function handleShowAddFriend() {
 		setAddingFriend(addingFriend => !addingFriend);
@@ -52,22 +49,16 @@ export default function App() {
 		setSelectedFriend(friend);
 	}
 
-	function handleSplitBill(e) {
-		e.preventDefault();
+	function handleUpdateFriend(expense) {
 		setFriends(friends => [
 			...friends.filter(friend => friend.id !== selectedFriend.id),
 			{
 				id: selectedFriend.id,
 				name: selectedFriend.name,
 				image: selectedFriend.image,
-				balance:
-					selectedFriend.balance +
-					(whoPaid === "You" ? 1 : -1) * (bill - myBill),
+				balance: selectedFriend.balance + expense,
 			},
 		]);
-		setBill(0);
-		setMyBill(0);
-		setWhoPaid("You");
 		setSplitingBill(false);
 	}
 
@@ -83,13 +74,7 @@ export default function App() {
 			{splitingBill && (
 				<FormSplitBill
 					friend={selectedFriend}
-					onSplitBill={handleSplitBill}
-					bill={bill}
-					setBill={setBill}
-					myBill={myBill}
-					setMyBill={setMyBill}
-					whoPaid={whoPaid}
-					setWhoPaid={setWhoPaid}
+					onUpdateFriend={handleUpdateFriend}
 				/>
 			)}
 		</div>
@@ -163,16 +148,19 @@ function FormAddFriend({ onAddFriend }) {
 	);
 }
 
-function FormSplitBill({
-	friend,
-	onSplitBill,
-	bill,
-	setBill,
-	myBill,
-	setMyBill,
-	whoPaid,
-	setWhoPaid,
-}) {
+function FormSplitBill({ friend, onUpdateFriend }) {
+	const [bill, setBill] = useState(0);
+	const [myBill, setMyBill] = useState(0);
+	const [whoPaid, setWhoPaid] = useState("You");
+
+	function handleSplitBill(e) {
+		e.preventDefault();
+		onUpdateFriend((whoPaid === "You" ? 1 : -1) * myBill);
+		setBill(0);
+		setMyBill(0);
+		setWhoPaid("You");
+	}
+
 	return (
 		<form className="form-split-bill">
 			<h2>Split a bill with {friend.name}</h2>
@@ -200,7 +188,7 @@ function FormSplitBill({
 				<option value="friend">{friend.name}</option>
 			</select>
 
-			<Button onClick={e => onSplitBill(e)}>Split Bill</Button>
+			<Button onClick={e => handleSplitBill(e)}>Split Bill</Button>
 		</form>
 	);
 }
