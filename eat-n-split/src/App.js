@@ -31,8 +31,6 @@ function Button({ children, onClick }) {
 
 export default function App() {
 	const [addingFriend, setAddingFriend] = useState(false);
-	const [friendName, setFriendName] = useState("");
-	const [imageURL, setImageURL] = useState("");
 	const [splitingBill, setSplitingBill] = useState(false);
 	const [friends, setFriends] = useState(initialFriends);
 	const [selectedFriend, setSelectedFriend] = useState({});
@@ -44,23 +42,9 @@ export default function App() {
 		setAddingFriend(addingFriend => !addingFriend);
 	}
 
-	function handleChangeFriendName(newName) {
-		setFriendName(newName);
-	}
-
-	function handleChangeImageURL(newName) {
-		setImageURL(newName);
-	}
-
-	function handleClickAddFriend(e) {
-		e.preventDefault();
+	function handleAddFriend(friend) {
 		setAddingFriend(false);
-		setFriends(friends => [
-			...friends,
-			{ id: 2134, name: friendName, image: imageURL, balance: 0 },
-		]);
-		setFriendName("");
-		setImageURL("");
+		setFriends(friends => [...friends, friend]);
 	}
 
 	function handleSelectFriend(friend) {
@@ -91,15 +75,7 @@ export default function App() {
 		<div className="app">
 			<div className="sidebar">
 				<FriendsList friends={friends} onSelectFriend={handleSelectFriend} />
-				{addingFriend && (
-					<FormAddFriend
-						friendName={friendName}
-						onChangeFriendName={handleChangeFriendName}
-						imageURL={imageURL}
-						onChangeImageURL={handleChangeImageURL}
-						onClickAddFriend={handleClickAddFriend}
-					/>
-				)}
+				{addingFriend && <FormAddFriend onAddFriend={handleAddFriend} />}
 				<Button onClick={handleShowAddFriend}>
 					{addingFriend ? "Close" : "Add Friend"}
 				</Button>
@@ -151,31 +127,38 @@ function Friend({ friend, onSelectFriend }) {
 	);
 }
 
-function FormAddFriend({
-	friendName,
-	onChangeFriendName,
-	imageURL,
-	onChangeImageURL,
-	onSubmit,
-	onClickAddFriend,
-}) {
+function FormAddFriend({ onAddFriend }) {
+	const [friendName, setFriendName] = useState("");
+	const [imageURL, setImageURL] = useState("");
+	function handleClickAddFriend(e) {
+		e.preventDefault();
+		if (!friendName || !imageURL) return;
+		onAddFriend({
+			id: crypto.randomUUID(),
+			name: friendName,
+			image: imageURL,
+			balance: 0,
+		});
+		setFriendName("");
+		setImageURL("");
+	}
 	return (
-		<form className="form-add-friend" onSubmit={onSubmit}>
+		<form className="form-add-friend" onSubmit={e => handleClickAddFriend(e)}>
 			<label>👯 Friend Name</label>
 			<input
 				type="text"
 				value={friendName}
-				onChange={e => onChangeFriendName(e.target.value)}
+				onChange={e => setFriendName(e.target.value)}
 			/>
 
 			<label>🌄 Image URL</label>
 			<input
 				type="text"
 				value={imageURL}
-				onChange={e => onChangeImageURL(e.target.value)}
+				onChange={e => setImageURL(e.target.value)}
 			/>
 
-			<Button onClick={e => onClickAddFriend(e)}>Add</Button>
+			<Button>Add</Button>
 		</form>
 	);
 }
