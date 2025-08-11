@@ -141,6 +141,12 @@ React:
             Result of composition
             They can be large and mon-reusable, but not always
             They just have to provide structure of the APP
+        Component Composition:
+          What It Is?
+            combining different components using Children Props(<List>[this part that is passed in is children props]</List>) or explictly defined Props
+          Why Use It?
+            1. create highly reusable and flexible components
+            2. fix Props Drilling
     State-driven:
       piece of data = piece of state
       base on the inital state React will render an UI
