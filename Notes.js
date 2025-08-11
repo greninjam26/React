@@ -128,6 +128,19 @@ React:
               3. NEVER declare a component inside another component
               4. one app can have components with different sizes
               5. don't seperate the component into files too early
+        Component Categories:
+          1. Stateless/presetational components
+            No State
+            they are components that take in data and display them
+            They are usually very small and reuseable
+          2. Stateful components
+            Have State
+            can still be usable
+          3. Structural components
+            "Pages", "Layouts", or "Screens" of the app
+            Result of composition
+            They can be large and mon-reusable, but not always
+            They just have to provide structure of the APP
     State-driven:
       piece of data = piece of state
       base on the inital state React will render an UI
