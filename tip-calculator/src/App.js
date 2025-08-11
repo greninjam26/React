@@ -1,33 +1,40 @@
 import { useState } from "react";
 
 const selectionOptions = [
-	"Dissatisfied (0%)",
-	"It was okay (10%)",
-	"I was good (15%)",
-	"Absolutely Amazing (20%)",
+	{ value: 0, text: `Dissatisfied (0%)` },
+	{ value: 10, text: `It was okay (10%)` },
+	{ value: 15, text: `I was good (15%)` },
+	{ value: 20, text: `Absolutely Amazing (20%)` },
 ];
 
 export default function App() {
-	const [bill, setBill] = useState(0);
-	const [tip1, setTip1] = useState(selectionOptions[0]);
-	const [tip2, setTip2] = useState(selectionOptions[0]);
+	const [bill, setBill] = useState("");
+	const [tip1, setTip1] = useState(0);
+	const [tip2, setTip2] = useState(0);
 
-	function getTip(tip) {
-		return Number(
-			tip.slice(-4, -2).at(0) === "(" ? tip.slice(-3, -2) : tip.slice(-4, -2)
-		);
-	}
+	// function getTip(tip) {
+	// 	return Number(
+	// 		tip.slice(-4, -2).at(0) === "(" ? tip.slice(-3, -2) : tip.slice(-4, -2)
+	// 	);
+	// }
 
 	function handleClick() {
-		setBill(0);
-		setTip1(selectionOptions[0]);
-		setTip2(selectionOptions[0]);
+		setBill("");
+		setTip1(0);
+		setTip2(0);
 	}
 
-	const totaltip = (bill * (getTip(tip1) + getTip(tip2))) / 2 / 100;
+	// const totaltip = bill * (getTip(tip1) + getTip(tip2)) / 2 / 100;
+	const totaltip = bill * ((tip1 + tip2) / 2 / 100);
+
 	return (
 		<div>
-			<Option inputType="text" value={bill} onValueChange={setBill}>
+			<Option
+				inputType="text"
+				value={bill}
+				placeholder="Bill Value"
+				onValueChange={setBill}
+			>
 				How much was the bill:
 			</Option>
 			<Option inputType="selection" value={tip1} onValueChange={setTip1}>
@@ -36,7 +43,7 @@ export default function App() {
 			<Option inputType="selection" value={tip2} onValueChange={setTip2}>
 				How did your friend like the service?
 			</Option>
-			{bill !== 0 && (
+			{bill && (
 				<>
 					<Result totaltip={totaltip} bill={bill} />
 					<Reset onClick={handleClick} />
@@ -46,20 +53,26 @@ export default function App() {
 	);
 }
 
-function Option({ inputType, children, value, onValueChange }) {
+function Option({ inputType, placeholder, children, value, onValueChange }) {
 	return (
 		<div>
-			<span>{children}</span>
+			<label>{children}</label>
 			{inputType !== "selection" ? (
 				<input
 					type={inputType}
+					placeholder={placeholder}
 					value={value}
 					onChange={e => onValueChange(Number(e.target.value))}
 				/>
 			) : (
-				<select value={value} onChange={e => onValueChange(e.target.value)}>
+				<select
+					value={value}
+					onChange={e => onValueChange(Number(e.target.value))}
+				>
 					{selectionOptions.map(option => (
-						<option key={option}>{option}</option>
+						<option value={option.value} key={option.text}>
+							{option.text}
+						</option>
 					))}
 				</select>
 			)}
@@ -69,9 +82,9 @@ function Option({ inputType, children, value, onValueChange }) {
 
 function Result({ bill, totaltip }) {
 	return (
-		<p>
-			You pay ${bill} (${bill} + ${totaltip} tip)
-		</p>
+		<h3>
+			You pay ${bill + totaltip} (${bill} + ${totaltip} tip)
+		</h3>
 	);
 }
 
