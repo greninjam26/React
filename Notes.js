@@ -99,6 +99,35 @@ React:
             Props is used by the parent component to config the child components
         logic: 
         appearance: 
+
+        Component Size:
+          this matters because too big or too small it is all bad(but sometimes we need very small components that have no logic to make life easier, or vary big ones to contain the entire page)
+          TOO Big:
+            this cause the component to have too many responsibilities
+            Like having too much props and hard to use
+            it will also have complex code logics that is hard to understand
+          TOO Small:
+            this causes there to be too many different components
+            it can confuse the condebase
+            by have too many small components everything would be too abstracted
+          GENERAL RULES:
+            1. the seperation between components are logical
+              does the component contain pieces of content or layout that don't belong together
+            2. make the component reusable when needed
+              is it possible to make part of the component reuseable
+              is it needed?
+            3. each component need to have a logical responsibility
+              does the component have too many things
+              does the component rely on too many props
+              does the component have too many piece of states or effects
+              is the code, including the JSX, too complex or confusing
+            4. personal preference
+            Guidelines:
+              1. creating new components have a cost, each new component have a layer of abstraction that makes the code hard to understand
+              2. name the component base on what it does or what it displays, don't care if the name is too long(it is normal)
+              3. NEVER declare a component inside another component
+              4. one app can have components with different sizes
+              5. don't seperate the component into files too early
     State-driven:
       piece of data = piece of state
       base on the inital state React will render an UI
