@@ -181,38 +181,84 @@ React:
     each of these calls will result as a React Element
     These Elements are objects that contains all the information needed to create the DOM elements
     These React Elements will be converted to DOM Elements
-    These element don't actually display, they are jsut convert to DOM Elements
+    These element don't actually display, they are just convert to DOM Elements
+  
+  Rending the Elements(Render):
+    1. Rendering is triggered: which is usually when a state updates
+      How to Trigger:
+        1. the initial Render: this is when the application run for the first time and everything is rendered
+        2. Re-Render: this is when a state changed
+        NOTE: 
+        1. the render process is triggered for entire application, but it doesn't mean the entire DOM will update
+        2. The Render is not triggered immediately, it will only start when the JS Engine have "free time"
+    2. Render Phase(React):
+      What is it?
+        at this phase React calls the components and figure out how to update the DOM to reflect the state changes
+        NOTE:
+          This phase nothing is changed or displayed in the DOM
+          The definition of Render in React is not what we think
+          Render is only internally React figure out how things need to work
+          But nothing is change vistually
+      PROCESS:
+        1. React will going through the entire Component Tree and Render all the instance that triggered the re-render, which mean it calls the Component function
+        2. This will create updated React Elements
+        3. all these elements will make up the Virtual DOM
+          Virtual DOM:
+            What it is?
+              During the initial render of the application React will take the entire Component Tree and trasform it into one big React Element, which is the React Element Tree
+              This Element Tree is also known as the Virtual DOM
+            Definition:
+              Virtual DOM is just a Tree of all the React Elements converted from all the Component Instance
+            Benefit:
+              It is very cheap and fast to create a tree like this
+            NOTE:
+              This have nothing to do with the "Shadow DOM"
+          Whenever there is a state update in a component and trigger the re-render
+          Then React will call the component and create a new Virtual DOM, this new React Element Tree will also contain the new Element from the call from the Child Component of the Component
+          Because everytime a component re-render, all its child components will also re-render no matter is their props changed or not. 
+          the reason for this is that React don't know where the change will effect the child component or not, so it re-renders everything to play it safe. 
+        4. New Virtual DOM will get reconciled with the Fibre Tree before the state update
+          this is done in React's Reconciler, also called Fibre, thats why there is a Fibre Tree
+          the result of the reconciliation will be a new Fibre tree that will be later used to update the DOM
+          WHY?
+            Writing to the DOM is very inefficient and wasteful
+            Usually only small part of the DOM need to be updated, but initial there is no way to know which part need to be updated, so we need to update the entire DOM
+          What is it?
+            Reconciliation:
+              this is deciding which part of the DOM need to be added, deleted, or changed to reflect the lastest state change
+              So the Reconciler that does this can be seen as the heart of React. 
+              Process:
+                this process use the Diffing, which is going through each element and compare and update the Fibre Tree. 
+                The elements that DOM need changing is marked DOM Update
+                The elements that need to be deleted is marked DOM Deletion
+                All these changes then is placed in a list called List of Effects, which will be used in the next phase to update the DOM
+            Reconciler(Fibre):
+              After the initial launch of the app, a Fibre Tree is created from the React Element Tree(Virtual DOM), 
+              This Tree contains a "fibre" for each component instance
+              These Fibres are not recreated on every render, instead the Fibre Tree is a mutatable data structure that updates everytime when there is a re-render
+              All the information of each component is stored in the fibre
+              fibre is also defined as "a unit of work", because it also have all the execution stuff in there
+              In there the work can be done asynchronously
+                this allows us to be able to pause, resume and thrown away work
+                which helps use to be able to have suspense or transitions that won't block the rest of the code
+              NOTE:
+                The Fibre Tree don't not have only the React Components, it also includes the HTML elements, like h3 and button
+    3. Commit Phase(ReactDOM):
+      This is the traditional understand of Render for us Humans. 
+      It is during this phase where all the changes are reflected in the DOM
+      React will add, delete or update the elements
+      NOTE:
+        this process is synchronous so that all the DOM is updated in one go so no partial result is displayed to the user
+        After this phase is completed the workInProcess Fibre Tree becomes the current Fibre Tree and ready for the next render cycle
+      ReactNOTE:
+        React never touches the DOM, because it is design to be able to interact with different platforms("hosts") and not just browers
+        Examples(these Renders):
+          With React Native we can build IOS and Android Native Mobile Applications
+          With a package called Remotion we can build videos
+          With many other things we can create word, pdf, and many other things
+    4. Brower Repaint(Browers): this is when the Brower noticed the change in the DOM and repaint the page so we can see the change
 
-
-Rending List:
-  Rendering a components for each element of the array
-
-React Fragment:
-  this let us to be able to group html elements without wrapping them in another element or leaving any trace of the wrapping in HTML
-  to archieve this by wrapping the elements in <>[elements]</>
-  if we need to have a key in the fragment then we need to do this <React.fragment>[elements]</React.fragment>
-
-Listening for Event:
-  similar to HTML inline but modified for JSX
-  Instead of eventlisteners we are adding them as events in the JSX return of the components
-  the "function" is usually defined on the component then called in the {}
-  Examples:
-    onClick={[function]}
-    mouseEnter={[function]}
-
-Controlled Elements:
-  What to use on:
-    Input Fields and Select elements have their states stored in the DOM, but we want to have them in the code
-  How it Works:
-    1. create piece of state
-    2. we need to set the value to the state(tell React to send the state to the DOM)
-    3. we need to get the state from the DOM when there is a new value
-      have this on an input field: onChange={e => setDescription(e.target.value)}
-
-Strict Mode:
-  all the components are usually rendered twice
-
-Thinking in React:
+  Thinking in React:
   have the React mindset
   think about components, states, data flow, effects
   thinking in data transition and but data mutation
@@ -244,13 +290,42 @@ Thinking in React:
       state that is computed from existing states
       Benefit:
         by derive states from existing state, this allows us to update one state and all the derived states will also update, and this way the component will only re-render once and we don't need to manually update all the states together all the time
-  
-State Management:
-  deciding 
-    when to create a piece of state
-    what type of state are necessary
-    where to place each piece of state
-    how data flow through the app
+    
+    State Management:
+      deciding 
+        when to create a piece of state
+        what type of state are necessary
+        where to place each piece of state
+        how data flow through the app
+
+
+Rending List:
+  Rendering a components for each element of the array
+
+React Fragment:
+  this let us to be able to group html elements without wrapping them in another element or leaving any trace of the wrapping in HTML
+  to archieve this by wrapping the elements in <>[elements]</>
+  if we need to have a key in the fragment then we need to do this <React.fragment>[elements]</React.fragment>
+
+Listening for Event:
+  similar to HTML inline but modified for JSX
+  Instead of eventlisteners we are adding them as events in the JSX return of the components
+  the "function" is usually defined on the component then called in the {}
+  Examples:
+    onClick={[function]}
+    mouseEnter={[function]}
+
+Controlled Elements:
+  What to use on:
+    Input Fields and Select elements have their states stored in the DOM, but we want to have them in the code
+  How it Works:
+    1. create piece of state
+    2. we need to set the value to the state(tell React to send the state to the DOM)
+    3. we need to get the state from the DOM when there is a new value
+      have this on an input field: onChange={e => setDescription(e.target.value)}
+
+Strict Mode:
+  all the components are usually rendered twice
 
 Debugging:
   if the app is not updating
