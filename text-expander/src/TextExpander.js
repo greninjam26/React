@@ -15,16 +15,20 @@ export default function TextExpander({
 		setExpand(bool => !bool);
 	}
 
+	const buttonStyle = {
+		color: buttonColor,
+		cursor: "pointer",
+		border: "none",
+		background: "none",
+		fontSize: "inherit",
+	};
+
 	return (
 		<div className={className}>
 			<span>{expand ? children : children}</span>{" "}
-			<span
-				role="button"
-				style={{ color: buttonColor, cursor: "pointer" }}
-				onClick={handleExpand}
-			>
+			<button style={buttonStyle} onClick={handleExpand}>
 				{expand ? collapseButtonText : expandButtonText}
-			</span>
+			</button>
 		</div>
 	);
 }
