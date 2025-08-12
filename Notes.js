@@ -240,6 +240,16 @@ React:
                       2. elements with a stable key will stay the same across renders
                         if after rendering the same element is at the same position all the state will be preserved. 
                         {this is probably the cause that when we change the window between different account and the account looks the same all the input boxes are not cleared 🤔}
+                        KEY PROPS:
+                          this allows the diffing algorithm to differentiate between similar elements and a element is unique
+                          USE CASE:
+                            1. use in list items:
+                              the a list is rendered and a new element is add to the top of the list
+                              so the rest of the elements in the list is all moved down
+                              if there are not unique keys then all of the will be destroyed and rebuild which is a bad practice and bad for performance
+                              WITH a key props they will be not reconstructed because they ave a unique key
+                            2. Changing Key:
+                              When create the element it will have a key value, when the content change and we want to reset the state we can change the key value with the content so it will be register as a different element and have brand new state
                 The elements that DOM need changing is marked DOM Update
                 The elements that need to be deleted is marked DOM Deletion
                 All these changes then is placed in a list called List of Effects, which will be used in the next phase to update the DOM
