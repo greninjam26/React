@@ -21,6 +21,7 @@ export default function TextExpander({
 		border: "none",
 		background: "none",
 		fontSize: "inherit",
+		marginLeft: "6px",
 	};
 
 	return (
@@ -29,7 +30,7 @@ export default function TextExpander({
 				{isExpanded
 					? children
 					: children.split(" ").slice(0, collapsedNumWords).join(" ") + "..."}
-			</span>{" "}
+			</span>
 			<button style={buttonStyle} onClick={handleExpand}>
 				{isExpanded ? collapseButtonText : expandButtonText}
 			</button>
