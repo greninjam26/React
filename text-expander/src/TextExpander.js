@@ -9,10 +9,10 @@ export default function TextExpander({
 	className = "",
 	children,
 }) {
-	const [expand, setExpand] = useState(expanded);
+	const [isExpanded, setIsExpanded] = useState(expanded);
 
 	function handleExpand() {
-		setExpand(bool => !bool);
+		setIsExpanded(expand => !expand);
 	}
 
 	const buttonStyle = {
@@ -25,9 +25,13 @@ export default function TextExpander({
 
 	return (
 		<div className={className}>
-			<span>{expand ? children : children}</span>{" "}
+			<span>
+				{isExpanded
+					? children
+					: children.split(" ").slice(0, collapsedNumWords).join(" ") + "..."}
+			</span>{" "}
 			<button style={buttonStyle} onClick={handleExpand}>
-				{expand ? collapseButtonText : expandButtonText}
+				{isExpanded ? collapseButtonText : expandButtonText}
 			</button>
 		</div>
 	);
