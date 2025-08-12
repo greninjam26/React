@@ -46,107 +46,6 @@ React:
         then lead the creation of the JSX and React which have all the code in HTML, CSS, and Javascript in one file. 
       react take different components and put them together to create the web page
       so we only need to build the components for the web page
-      components:
-        each component have its own data, logic, and appearance
-        nested components are used a lot
-        we can also reuse components to create duplicated components
-        components are create by using function(they are just functions)
-        RULES:
-          1. Capitalize the first letter of the function name
-          2. we always need to return some markUp(html code) or null
-          3. we need to include it to the App Component and when the App is rendered 
-                each component can only return a only element(like return <h1>Hello React!</h1>)
-                the only way to fix this is wrapping eveything need to be returned in a <div>
-          4. we need to nest components but Never NEVER nest component declarations in each other(it works but don't do it)
-        data: 
-          1. Props:
-            data that is coming from the parent components
-            RULE: we can NOT change props
-              If we change the parent element data, the create a side effect that can break React
-            One Way Data Flow:
-              this lead to React can only pass data from parent to child and not backward
-              WHY?
-                this make the application more predictable and easier to understand and debug
-                this is also better for performance
-            Child Props:
-              it is props that a component automaticly recieves
-              the value is what is between the open tag and the close tag of the component
-          2. State: 
-            internal data that can be updated by component logic
-            What is it?
-              it is the data that the component hold over time(component's memory)
-            Notes:
-              State: meaning all the states
-              State Variable/Piece of state : means the singular state a piece of data
-              But these three are used interchangeably
-            Whenever a piece of state is change React will re-render the component
-              Re-Render:
-                in simple terms is that when React need to re-render the component, React will call the component again
-                as long as the component exist, all the state will be preserved through out the process of Render and Re-Rendering
-            How to use it?
-              const [//State Variable//, //the function sets the state variable(usually called set[name])//] = useState(//the default value of the state variable//);
-              NEVER mutate the State Variables, always use the set function comes with it
-              when setting the state and we are using the current state to set the new value we need to pass the new value in as a callback function, so the current state will always be updated
-                Like this: setStep(s => s - 1);
-          SUMMARY:
-            State is internal data owned by the component
-            Props is external data owned by the parent component
-            State is like the component's memory, which contains all it needs to know
-            Props is like a function parameters that build a connection between the parent and child component
-            State can be updated by the component and when it is updated it will trigger React to re-render the component
-            Props is read-only the component can't mutate the value but when the parent component update their state, and the props updates, it will also trigger re-rendering of the component
-            State is used to make the component interactive
-            Props is used by the parent component to config the child components
-        logic: 
-        appearance: 
-
-        Component Size:
-          this matters because too big or too small it is all bad(but sometimes we need very small components that have no logic to make life easier, or vary big ones to contain the entire page)
-          TOO Big:
-            this cause the component to have too many responsibilities
-            Like having too much props and hard to use
-            it will also have complex code logics that is hard to understand
-          TOO Small:
-            this causes there to be too many different components
-            it can confuse the condebase
-            by have too many small components everything would be too abstracted
-          GENERAL RULES:
-            1. the seperation between components are logical
-              does the component contain pieces of content or layout that don't belong together
-            2. make the component reusable when needed
-              is it possible to make part of the component reuseable
-              is it needed?
-            3. each component need to have a logical responsibility
-              does the component have too many things
-              does the component rely on too many props
-              does the component have too many piece of states or effects
-              is the code, including the JSX, too complex or confusing
-            4. personal preference
-            Guidelines:
-              1. creating new components have a cost, each new component have a layer of abstraction that makes the code hard to understand
-              2. name the component base on what it does or what it displays, don't care if the name is too long(it is normal)
-              3. NEVER declare a component inside another component
-              4. one app can have components with different sizes
-              5. don't seperate the component into files too early
-        Component Categories:
-          1. Stateless/presetational components
-            No State
-            they are components that take in data and display them
-            They are usually very small and reuseable
-          2. Stateful components
-            Have State
-            can still be usable
-          3. Structural components
-            "Pages", "Layouts", or "Screens" of the app
-            Result of composition
-            They can be large and mon-reusable, but not always
-            They just have to provide structure of the APP
-        Component Composition:
-          What It Is?
-            combining different components using Children Props(<List>[this part that is passed in is children props]</List>) or explictly defined Props
-          Why Use It?
-            1. create highly reusable and flexible components
-            2. fix Props Drilling
     State-driven:
       piece of data = piece of state
       base on the inital state React will render an UI
@@ -160,6 +59,130 @@ React:
     Create by fackbook(Meta):
       Create by Jordan Walke in 2011
       in 2013 it is open sourced
+  Components:
+    each component have its own data, logic, and appearance
+    nested components are used a lot
+    we can also reuse components to create duplicated components
+    components are create by using function(they are just functions)
+    RULES:
+      1. Capitalize the first letter of the function name
+      2. we always need to return some markUp(html code) or null
+      3. we need to include it to the App Component and when the App is rendered 
+            each component can only return a only element(like return <h1>Hello React!</h1>)
+            the only way to fix this is wrapping eveything need to be returned in a <div>
+      4. we need to nest components but Never NEVER nest component declarations in each other(it works but don't do it)
+    data: 
+      1. Props:
+        data that is coming from the parent components
+        RULE: we can NOT change props
+          If we change the parent element data, the create a side effect that can break React
+        One Way Data Flow:
+          this lead to React can only pass data from parent to child and not backward
+          WHY?
+            this make the application more predictable and easier to understand and debug
+            this is also better for performance
+        Child Props:
+          it is props that a component automaticly recieves
+          the value is what is between the open tag and the close tag of the component
+      2. State: 
+        internal data that can be updated by component logic
+        What is it?
+          it is the data that the component hold over time(component's memory)
+        Notes:
+          State: meaning all the states
+          State Variable/Piece of state : means the singular state a piece of data
+          But these three are used interchangeably
+        Whenever a piece of state is change React will re-render the component
+          Re-Render:
+            in simple terms is that when React need to re-render the component, React will call the component again
+            as long as the component exist, all the state will be preserved through out the process of Render and Re-Rendering
+        How to use it?
+          const [//State Variable//, //the function sets the state variable(usually called set[name])//] = useState(//the default value of the state variable//);
+          NEVER mutate the State Variables, always use the set function comes with it
+          when setting the state and we are using the current state to set the new value we need to pass the new value in as a callback function, so the current state will always be updated
+            Like this: setStep(s => s - 1);
+      SUMMARY:
+        State is internal data owned by the component
+        Props is external data owned by the parent component
+        State is like the component's memory, which contains all it needs to know
+        Props is like a function parameters that build a connection between the parent and child component
+        State can be updated by the component and when it is updated it will trigger React to re-render the component
+        Props is read-only the component can't mutate the value but when the parent component update their state, and the props updates, it will also trigger re-rendering of the component
+        State is used to make the component interactive
+        Props is used by the parent component to config the child components
+    logic: 
+    appearance: 
+
+    Component Size:
+      this matters because too big or too small it is all bad(but sometimes we need very small components that have no logic to make life easier, or vary big ones to contain the entire page)
+      TOO Big:
+        this cause the component to have too many responsibilities
+        Like having too much props and hard to use
+        it will also have complex code logics that is hard to understand
+      TOO Small:
+        this causes there to be too many different components
+        it can confuse the condebase
+        by have too many small components everything would be too abstracted
+      GENERAL RULES:
+        1. the seperation between components are logical
+          does the component contain pieces of content or layout that don't belong together
+        2. make the component reusable when needed
+          is it possible to make part of the component reuseable
+          is it needed?
+        3. each component need to have a logical responsibility
+          does the component have too many things
+          does the component rely on too many props
+          does the component have too many piece of states or effects
+          is the code, including the JSX, too complex or confusing
+        4. personal preference
+        Guidelines:
+          1. creating new components have a cost, each new component have a layer of abstraction that makes the code hard to understand
+          2. name the component base on what it does or what it displays, don't care if the name is too long(it is normal)
+          3. NEVER declare a component inside another component
+          4. one app can have components with different sizes
+          5. don't seperate the component into files too early
+    Component Categories:
+      1. Stateless/presetational components
+        No State
+        they are components that take in data and display them
+        They are usually very small and reuseable
+      2. Stateful components
+        Have State
+        can still be usable
+      3. Structural components
+        "Pages", "Layouts", or "Screens" of the app
+        Result of composition
+        They can be large and mon-reusable, but not always
+        They just have to provide structure of the APP
+    Component Composition:
+      What It Is?
+        combining different components using Children Props(<List>[this part that is passed in is children props]</List>) or explictly defined Props
+      Why Use It?
+        1. create highly reusable and flexible components
+        2. fix Props Drilling
+  Component:
+    these are what we write in order to describe a piece of UI
+    they are just javascript functions, but they return React Elements(element tree), which usually written in JSX
+    each component can be think as a "blueprint" or "template"
+    from each of component, one or more Component Instance are created
+    INFO:
+      we can console.log the compoent Instace by doing (<App/>), this will output the React Element
+      Because a Component is just a javascript function, so we can do function calls, but NEVER DO THIS.
+      Function calls make React not register it as a component so it breaks
+  Component Instance:
+    Each time a Component is called, one instance of the component is created
+    This is because everytime we use the component React calls that component and create an instance
+    these instances are "physical" manifestation of the component
+    they have their own state and props
+    they also have their own lifecycle
+    THEN each of these react instances will return one or more React Elements
+  React Element:
+    Because each JSX can be converted to a React.creatElement() call
+    each of these calls will result as a React Element
+    These Elements are objects that contains all the information needed to create the DOM elements
+    These React Elements will be converted to DOM Elements
+    These element don't actually display, they are jsut convert to DOM Elements
+
 
 Rending List:
   Rendering a components for each element of the array
