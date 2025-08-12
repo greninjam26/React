@@ -229,6 +229,17 @@ React:
               So the Reconciler that does this can be seen as the heart of React. 
               Process:
                 this process use the Diffing, which is going through each element and compare and update the Fibre Tree. 
+                Diffing:
+                  How it Works:
+                    Based on 2 assumptions:
+                      1. two elements of different type will produce different trees
+                        if the type changed, like <p>hi</p> to <span>hi</span>
+                        then the old components in this case <p> and all of its children and states
+                        then a new tree will be build for <span> with brand new states
+                        so then way the states are all reset{this is probably why when we close a window, then reopen it, it resets all the input boxes 🤔}
+                      2. elements with a stable key will stay the same across renders
+                        if after rendering the same element is at the same position all the state will be preserved. 
+                        {this is probably the cause that when we change the window between different account and the account looks the same all the input boxes are not cleared 🤔}
                 The elements that DOM need changing is marked DOM Update
                 The elements that need to be deleted is marked DOM Deletion
                 All these changes then is placed in a list called List of Effects, which will be used in the next phase to update the DOM
@@ -237,7 +248,7 @@ React:
               This Tree contains a "fibre" for each component instance
               These Fibres are not recreated on every render, instead the Fibre Tree is a mutatable data structure that updates everytime when there is a re-render
               All the information of each component is stored in the fibre
-              fibre is also defined as "a unit of work", because it also have all the execution stuff in there
+              fibre is also defined as "a unit of work", because it also have all the work(queue of work), execution stuff in there
               In there the work can be done asynchronously
                 this allows us to be able to pause, resume and thrown away work
                 which helps use to be able to have suspense or transitions that won't block the rest of the code
