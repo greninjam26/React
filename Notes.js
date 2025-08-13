@@ -385,8 +385,23 @@ React:
               is the code that run when the phase is reached, shouldn't be thinking about it this way in lifecycle but in how React is synchronizing the data with the API
               it can also a an cleanup function, which is 
             dependency array:
-
+              By default effect is ran every render
+              BUT dependency array can change that.
+              Without it React don't know when to run the effects
+              this array contains dependences, and whenever one of them changes the effect will be executed
+              These DEPENDENCES are all the states and props used in the effect
+              so basicly useEffect is just an event lisntener that is waiting for one of the dependences to change
+              There are THREE TYPES:
+                1. [x, y, z]
+                  in this case the effect is executed when it is first mounted and whenever x, y, or z updates
+                2. []
+                  in this case the effect is executed when it is first mounted
+                3. 
+                  this this with no array, then it executes everytime there is a re-render and when it is mounted
         with this we can be able to write code that will run during different phases of the component instance lifecycle
+        NOTE:
+          Effect is run after the browser painted the page
+          so that if there are longing task it won't block anything
 
 Rending List:
   Rendering a components for each element of the array
