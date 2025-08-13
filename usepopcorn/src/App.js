@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import StarRating from "./StarRating";
 
 const tempMovieData = [
 	{
@@ -51,7 +52,7 @@ export default function App() {
 	const [watched, setWatched] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState("");
-	const [query, setQuery] = useState("");
+	const [query, setQuery] = useState("pokemon");
 	const [selectedId, setSelectedId] = useState(null);
 
 	function handleSelectMovie(movieId) {
@@ -244,12 +245,85 @@ function Movie({ movie, onSelectMovie }) {
 }
 
 function MovieDetails({ selectedId, onCloseMovie }) {
+	const [movie, setMovie] = useState({});
+	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState("");
+
+	const {
+		Title: title,
+		Year: year,
+		Poster: poster,
+		Runtime: runtime,
+		imdbRating,
+		Plot: plot,
+		Released: released,
+		Actors: actors,
+		Director: director,
+		Genre: genre,
+	} = movie;
+
+	useEffect(
+		function () {
+			async function getMoviesDetails() {
+				try {
+					setIsLoading(true);
+					setError("");
+					const resp = await fetch(
+						`http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`
+					);
+					if (!resp.ok)
+						throw new Error("Something went wrong with fetching the movie");
+					const data = await resp.json();
+					// if (data.Response === "False") throw new Error("Movie not Found");
+					setMovie(data);
+				} catch (err) {
+					console.error(err.message);
+					setError(err.message);
+				} finally {
+					setIsLoading(false);
+				}
+			}
+			getMoviesDetails();
+		},
+		[selectedId]
+	);
+
 	return (
 		<div className="details">
-			<button className="btn-back" onClick={onCloseMovie}>
-				&larr;
-			</button>
-			{selectedId}
+			{isLoading && <Loader />}
+			{!isLoading && !error && (
+				<>
+					<header>
+						<button className="btn-back" onClick={onCloseMovie}>
+							&larr;
+						</button>
+						<img src={poster} alt={`Poster of ${movie} Movie`} />
+						<div className="details-overview">
+							<h2>{title}</h2>
+							<p>
+								{released} &bull; {runtime}
+							</p>
+							<p>{genre}</p>
+							<p>
+								<span>⭐️</span>
+								{imdbRating} IMDb rating
+							</p>
+						</div>
+					</header>
+
+					<section>
+						<div className="rating">
+							<StarRating maxRating={10} size={24} />
+						</div>
+						<p>
+							<em>{plot}</em>
+						</p>
+						<p>Starring {actors}</p>
+						<p>Directed by {director}</p>
+					</section>
+				</>
+			)}
+			{error && <ErrorMessage message={error} />}
 		</div>
 	);
 }
