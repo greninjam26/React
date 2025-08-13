@@ -49,15 +49,19 @@ const KEY = "198290e1";
 export default function App() {
 	const [movies, setMovies] = useState([]);
 	const [watched, setWatched] = useState([]);
+	const query = "Fast";
 
 	// infinite loop
 	// fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=pokemon`)
 	// 	.then(resp => resp.json())
 	// 	.then(data => setMovies(data.Search));
 	useEffect(function () {
-		fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=Fast`)
-			.then(resp => resp.json())
-			.then(data => setMovies(data.Search));
+		async function fetchMovies() {
+			const resp = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+			const data = await resp.json();
+			setMovies(data.Search);
+		}
+		fetchMovies();
 	}, []);
 
 	return (

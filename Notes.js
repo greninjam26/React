@@ -385,7 +385,7 @@ React:
               is the code that run when the phase is reached, shouldn't be thinking about it this way in lifecycle but in how React is synchronizing the data with the API
               it can also a an cleanup function, which is 
             dependency array:
-              
+
         with this we can be able to write code that will run during different phases of the component instance lifecycle
 
 Rending List:
@@ -423,6 +423,8 @@ Controlled Elements:
 
 Strict Mode:
   all the components are usually rendered twice
+  this way React in development can help to check for errors
+  this will not run all component twice when published
 
 Debugging:
   if the app is not updating
