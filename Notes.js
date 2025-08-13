@@ -129,6 +129,7 @@ React:
         this is all the code that live at the top level of the component
         and all the code the participate in describing how the component will look
         In summary this is all the code that is being executed everytime the component is rendered
+        NEVER put setState calls inside the top level code, because after initial render the state change will trigger re-render and the re-render will trigger the state change and cause an infinity loop of re-rendering
         ReactRULE:
           Render Logic must be pure, so no interaction with outside world
       2. Event Handler functions
