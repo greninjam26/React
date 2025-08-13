@@ -19,6 +19,20 @@ Why is there Front End Frameworks:
   2. the frameworks enforce a way to write and structure to make sure our code is not a mess
   3. this allows everyone on a team to be able to code in the same style
 
+Framework:
+  this is a complete kit of everything we need to building a complete application(batteries included), it have HTTP requests, Styling, Routing, Form managment
+  BUT we are stuck with the tools and convensions
+
+Library:
+  this is piece of code developer shares with other to make everyone's life easier
+  this allows us to pick whatever library we like
+  BUT we need to manually download all of them and update when things change
+  Example:
+    React:
+      it is a View Library, because all it does is drawing components on UI
+      so if we want to build an application with React we need to add a lot of external libraries to make everything work
+      BUT React is so popular there are a lot of external librarie to choose from
+
 React:
   With React we don't need to have a html file controlling everything, all the code can be in javascript
   What it is:
