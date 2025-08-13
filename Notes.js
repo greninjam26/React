@@ -374,7 +374,19 @@ React:
         what type of state are necessary
         where to place each piece of state
         how data flow through the app
-
+  Side Effect:
+    this is when the React component is interacting with the outside world, in other words this is when the code actually does something
+    Where can it Happen?
+      1. Event Handler
+      2. Effect
+        by using useEffect()
+          this have 2 pass in values(effect function, dependency array)
+            effect function:
+              is the code that run when the phase is reached, shouldn't be thinking about it this way in lifecycle but in how React is synchronizing the data with the API
+              it can also a an cleanup function, which is 
+            dependency array:
+              
+        with this we can be able to write code that will run during different phases of the component instance lifecycle
 
 Rending List:
   Rendering a components for each element of the array
