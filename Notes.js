@@ -199,7 +199,24 @@ React:
         2. Re-Render: this is when a state changed
         NOTE: 
         1. the render process is triggered for entire application, but it doesn't mean the entire DOM will update
-        2. The Render is not triggered immediately, it will only start when the JS Engine have "free time"
+        2. The Render is not triggered immediately, it will only start when the JS Engine have "free time". There is also batching of multiple setState calls in event handler
+          State Update Batching:
+            when the setState calls are next to each other(show below), it will not trigger three re-renders. they will be batched together to only one re-render
+            setA("");
+            console.log(A);
+            setB("");
+            setC("");
+            BUT what happen to the console.log?
+              A will not be "", this is because the code is read line by line and the set is batched
+              so at this point the state is know as stale state, which means it should be reseted but not yet
+              CONCLUDE:
+                setState is Asynchronous
+                this is why when we need the current value we need to do this
+                setD(d=>d+1);
+            NOTE:
+              Never used, but if you are desperate
+              ReactDOM.flushSync([setState()])
+              this will stop the batching for this set call
     2. Render Phase(React):
       What is it?
         at this phase React calls the components and figure out how to update the DOM to reflect the state changes
