@@ -199,6 +199,21 @@ React:
     they have their own state and props
     they also have their own lifecycle
     THEN each of these react instances will return one or more React Elements
+    Component Instance Lifecycle(Component Lifecycle):
+      this is the different phases a component instance can experience
+      1. Mounted(Initial Render):
+        this is when the component instance is rendered for the first time
+        Fresh state and props is created
+      2. Re-Render:
+        This happens when
+          state changes
+          props changes
+          parent re-renders
+          context changes
+      3. Unmount:
+        this is when the component instance is destroyed or removed
+        all of its state and props go with it
+      We can define code to be run at these different stages(useEffect)
   React Element:
     Because each JSX can be converted to a React.creatElement() call
     each of these calls will result as a React Element
