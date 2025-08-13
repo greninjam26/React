@@ -361,6 +361,14 @@ Listening for Event:
   Examples:
     onClick={[function]}
     mouseEnter={[function]}
+  NOTE:
+    capturing phase, bubbling phase and event delegation is also here
+    we just don't use it a lot in React
+    BUT React do delegation for all the onClick handler
+    beause React bundles all the eventHandles together and stores in the #root
+    React ALSO add a thin layer of SyntheticEvent around the normal Javascript Event
+    this adds some improvements and changes
+    like making focus, blur, change event bubble
 
 Controlled Elements:
   What to use on:
