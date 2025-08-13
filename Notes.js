@@ -111,6 +111,15 @@ React:
         State is used to make the component interactive
         Props is used by the parent component to config the child components
     logic: 
+      1. Render Logic
+        this is all the code that live at the top level of the component
+        and all the code the participate in describing how the component will look
+        In summary this is all the code that is being executed everytime the component is rendered
+        ReactRULE:
+          Render Logic must be pure, so no interaction with outside world
+      2. Event Handler functions
+        this is code that execute as a consequence of the event that the handler is listening for
+        this is also the codes that is actually doing things, like changing states and many other things
     appearance: 
 
     Component Size:
