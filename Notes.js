@@ -441,6 +441,21 @@ React:
           React is doing this because the hook this way don't need a name, but only a call order to store the values
       2. Hooks can only be called from React functions
         this means that the hooks can only be called from function components and custom hooks
+  I need to Reuse:
+    UI:
+      Components
+    Logic:
+      does it have any hooks?
+        No:
+          Regular Function
+        Yes:
+          Custom Hooks:
+            they allow us to Reuse React Logics that contain hooks(non-vitual Hooks)
+            The point of Custom Hooks are to make think reusable and portable(even across different Project)
+            What is it?
+              it is just a javascript function that can recive and return any data
+              It have to have one or more React Hooks
+              MUST: To make US and React to recognize this as a hook the name have to start with use
 
 Rending List:
   Rendering a components for each element of the array
