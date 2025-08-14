@@ -383,7 +383,14 @@ React:
           this have 2 pass in values(effect function, dependency array)
             effect function:
               is the code that run when the phase is reached, shouldn't be thinking about it this way in lifecycle but in how React is synchronizing the data with the API
-              it can also a an cleanup function, which is 
+              it can also return a an cleanup function(optional):
+                Cleanup function is returned from an effect
+                it will run on two occasions:
+                  1. before the effect execute again
+                  2. after a component is unmounted
+                WHY?
+                  1. we need to clean up the side effect caused by the effect
+                  2. to fix Race Conditions, which is when the first HTTP request is not finished and another is fired off
             dependency array:
               By default effect is ran every render
               BUT dependency array can change that.
