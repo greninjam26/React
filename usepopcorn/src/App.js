@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import StarRating from "./StarRating";
 
 const average = arr => arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -155,6 +155,23 @@ function Logo() {
 }
 
 function Search({ query, setQuery }) {
+	// DOM element is usually null
+	const inputEl = useRef(null);
+
+	useEffect(
+		function () {
+			function callBack(e) {
+				if (document.activeElement === inputEl.current) return;
+				if (e.key !== "Enter") return;
+				setQuery("");
+				inputEl.current.focus();
+			}
+			document.addEventListener("keydown", callBack);
+			return () => document.removeEventListener("keydown", callBack);
+		},
+		[setQuery]
+	);
+
 	return (
 		<input
 			className="search"
@@ -162,6 +179,8 @@ function Search({ query, setQuery }) {
 			placeholder="Search movies..."
 			value={query}
 			onChange={e => setQuery(e.target.value)}
+			// with this we don't need querySelector
+			ref={inputEl}
 		/>
 	);
 }
