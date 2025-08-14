@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import StarRating from "./StarRating";
 import { useMovies } from "./useMovies";
 import { useLocalStorageState } from "./useLocalStorageState";
+import { useKey } from "./useKey";
 
 const average = arr => arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
@@ -107,19 +108,11 @@ function Search({ query, setQuery }) {
 	// DOM element is usually null
 	const inputEl = useRef(null);
 
-	useEffect(
-		function () {
-			function callBack(e) {
-				if (document.activeElement === inputEl.current) return;
-				if (e.key !== "Enter") return;
-				setQuery("");
-				inputEl.current.focus();
-			}
-			document.addEventListener("keydown", callBack);
-			return () => document.removeEventListener("keydown", callBack);
-		},
-		[setQuery]
-	);
+	useKey("enter", function () {
+		if (document.activeElement === inputEl.current) return;
+		setQuery("");
+		inputEl.current.focus();
+	});
 
 	return (
 		<input
@@ -252,17 +245,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 		onCloseMovie();
 	}
 
-	useEffect(
-		function () {
-			function callBack(e) {
-				if (e.key !== "Escape") return;
-				onCloseMovie();
-			}
-			document.addEventListener("keydown", callBack);
-			return () => document.removeEventListener("keydown", callBack);
-		},
-		[onCloseMovie]
-	);
+	useKey("escape", onCloseMovie);
 
 	useEffect(
 		function () {
@@ -392,7 +375,11 @@ function WatchedMovieList({ watched, onDeleteWatched }) {
 	return (
 		<ul className="list">
 			{watched.map(movie => (
-				<WatchedMovie movie={movie} onDeleteWatched={onDeleteWatched} />
+				<WatchedMovie
+					movie={movie}
+					onDeleteWatched={onDeleteWatched}
+					key={movie.imdbID}
+				/>
 			))}
 		</ul>
 	);
