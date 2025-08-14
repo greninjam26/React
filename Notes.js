@@ -419,7 +419,22 @@ React:
     this provides us an easy way to reusing non-visual logic by using custom hooks
     this gives function components the ability to own state and run side effects at different lifecycle points(this is only possible with class components before React 16.8)
     MOST USED:
-      useState, useEffect, useReducer, useContext
+      useState, useEffect, 
+      useReducer:
+        WHY?
+          this can help when there are too many states and used in too many places
+        This function take in ([function], [initial state value])
+        it returns the state, and a dispatch function
+        when the dispatch function is called it recives ([usually and object{type:"dec", payLoad:-1}])
+        then the action(the object from dispatch) and the state will be passed into the [function] that is passed into useReducer in the beginning
+        that function will recive (state, action)
+        This function usually contains a lot of conditions for all possible types in action
+          so Switch Case is very common in these functions
+        then it will return the new value of the state base on the type
+        NOTE:
+          usually there will be multiple states, or we wouldn't be using this instead of useState
+      useContext:
+
     LESS USED:
       useRef:
         this create a Ref, which is an object with mutatable .current
@@ -431,7 +446,10 @@ React:
           Ref are used to store data that is NOT rendered, usually only appear in event handler and useEffect
           DO NOT read write or read Ref in render logic
           UPDATE is not asynchronous
-      useCallBack, useMemo, useTransition, useDeferredValue
+      useCallBack:
+      useMemo:
+      useTransition:
+      useDeferredValue:
       useLayoutEffect, useDebugValue, useImperativeHandle, useId
     RULES:
       1. hook can be only called at the top level
