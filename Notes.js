@@ -421,7 +421,17 @@ React:
     MOST USED:
       useState, useEffect, useReducer, useContext
     LESS USED:
-      useRef, useCallBack, useMemo, useTransition, useDeferredValue
+      useRef:
+        this create a Ref, which is an object with mutatable .current
+        Ref's data is also persisted through renders
+        USE CASES:
+          1. create variables that can keep data between different renders
+          2. select and store DOM elements
+        NOTE:
+          Ref are used to store data that is NOT rendered, usually only appear in event handler and useEffect
+          DO NOT read write or read Ref in render logic
+          UPDATE is not asynchronous
+      useCallBack, useMemo, useTransition, useDeferredValue
       useLayoutEffect, useDebugValue, useImperativeHandle, useId
     RULES:
       1. hook can be only called at the top level
