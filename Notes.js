@@ -410,6 +410,27 @@ React:
         NOTE:
           Effect is run after the browser painted the page
           so that if there are longing task it won't block anything
+  Hooks:
+    these are special build-in functions allow us to be able to "hook" into React internals
+      create and accessing state from Fibre Tree
+      registering side effect inside the Fibre Tree
+      Manual DOM selections
+    These functions all start with use
+    this provides us an easy way to reusing non-visual logic by using custom hooks
+    this gives function components the ability to own state and run side effects at different lifecycle points(this is only possible with class components before React 16.8)
+    MOST USED:
+      useState, useEffect, useReducer, useContext
+    LESS USED:
+      useRef, useCallBack, useMemo, useTransition, useDeferredValue
+      useLayoutEffect, useDebugValue, useImperativeHandle, useId
+    RULES:
+      1. hook can be only called at the top level
+        this a rule because hooks rely on have them always executed in the same order on every render, so no conditions allowed
+        WHY?
+          This is because all the state calls are stored in a LinkedList(check LeetCode), which means if one of the state have a condition then the chain will be broken(each Node can only access the next element).
+          React is doing this because the hook this way don't need a name, but only a call order to store the values
+      2. Hooks can only be called from React functions
+        this means that the hooks can only be called from function components and custom hooks
 
 Rending List:
   Rendering a components for each element of the array
