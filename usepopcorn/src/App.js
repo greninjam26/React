@@ -10,7 +10,7 @@ export default function App() {
 	const [watched, setWatched] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState("");
-	const [query, setQuery] = useState("pokemon");
+	const [query, setQuery] = useState("");
 	const [selectedId, setSelectedId] = useState(null);
 
 	function handleSelectMovie(movieId) {
@@ -64,6 +64,7 @@ export default function App() {
 				setError("");
 				return;
 			}
+			handleCloseMovie();
 			fetchMovies();
 
 			return function () {
@@ -261,6 +262,18 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 		onAddWatched(newWatchedMovie);
 		onCloseMovie();
 	}
+
+	useEffect(
+		function () {
+			function callBack(e) {
+				if (e.key !== "Escape") return;
+				onCloseMovie();
+			}
+			document.addEventListener("keydown", callBack);
+			return () => document.removeEventListener("keydown", callBack);
+		},
+		[onCloseMovie]
+	);
 
 	useEffect(
 		function () {

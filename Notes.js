@@ -379,6 +379,7 @@ React:
     Where can it Happen?
       1. Event Handler
       2. Effect
+        this is an esacpe, because we can do DOM manipulation in effects :)
         by using useEffect()
           this have 2 pass in values(effect function, dependency array)
             effect function:
