@@ -25,18 +25,23 @@ const initialState = {
 };
 
 function reducer(state, action) {
+	if (!state.isActive && action.type !== "openAccount") return state;
 	switch (action.type) {
 		case "openAccount":
 			return { ...state, isActive: true, balance: action.payLoad };
 		case "deposit":
 			return { ...state, balance: state.balance + action.payLoad };
 		case "withdraw":
+			if (state.balance === 0) return state;
 			return { ...state, balance: state.balance - action.payLoad };
 		case "requestLoan":
+			if (state.loan !== 0) return state;
 			return { ...state, loan: 5000, balance: state.balance + action.payLoad };
 		case "payLoan":
+			if (state.loan === 0 || state.balance < state.loan) return state;
 			return { ...state, loan: 0, balance: state.balance - state.loan };
 		case "closeAccount":
+			if (state.balance !== 0 || state.loan !== 0) return state;
 			return initialState;
 		default:
 			throw new Error("Action is not valid");
@@ -70,7 +75,7 @@ export default function App() {
 			<p>
 				<button
 					onClick={() => dispatch({ type: "withdraw", payLoad: 50 })}
-					disabled={!isActive}
+					disabled={!isActive || balance === 0}
 				>
 					Withdraw 50
 				</button>
