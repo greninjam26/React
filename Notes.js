@@ -433,6 +433,20 @@ React:
         then it will return the new value of the state base on the type
         NOTE:
           usually there will be multiple states, or we wouldn't be using this instead of useState
+      State or Reducer?
+        single one state?
+          Yes:
+            useState
+          No:
+            will the state be updated together a lot?
+            are these states related or do they include objects?
+            will there be too many eventhandler that makes the components too big and messy?
+            If any of these is a concern then we need to ask do we want to write the reducer function?
+              Yes:
+                useReducer
+              No:
+                useState
+
       useContext:
 
     LESS USED:
