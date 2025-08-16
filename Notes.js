@@ -488,7 +488,23 @@ React:
               it is just a javascript function that can recive and return any data
               It have to have one or more React Hooks
               MUST: To make US and React to recognize this as a hook the name have to start with use
-
+  Routing:
+    in web development we match different URLs to different views in the UI
+    in React we match the URLs to different components
+    these matches between URLs and views are called routes
+    these matches are like with links with different subfixes that is matched with each webpage
+    THIS only works with client side, server side routing is different
+    REACT ROUTER is the external packages most people use to handle Routing in React(routing is another thing React is missing)
+    THIS IS ESSENTIAL because all single page application needs it
+  Single Page Application(SPA):
+    this is application that is entirely executed on the client side(browers)
+    They completely rely on Routing where each URL have a matching page
+    How it Works?
+      when the user click on special linked create by the router, then the URL change to the one matches new component and this triggers the DOM to be updated to the new components
+      IN SPA it is always Javascript(React) that is updating the DOM
+    Benefit:
+      because it is single page and everything is handled by the javascript, so there will be no hard reload that is caused by change between different web pages
+      so it feel just like a native app
 Rending List:
   Rendering a components for each element of the array
 
