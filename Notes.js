@@ -505,6 +505,24 @@ React:
     Benefit:
       because it is single page and everything is handled by the javascript, so there will be no hard reload that is caused by change between different web pages
       so it feel just like a native app
+  Styling in React:
+    1. inline CSS that only apply to the element it is added to
+    2. external global CSS or SCSS, then we add the className to the JSX
+      BUT this can cause a lot of problems in big projects, 
+        1. if someone change the style of the class we won't know what will be effected
+        2. if someone add a new class with the same name things become chaotic
+    3. CSS Modules, they are a external CSS file designed for each file
+      Benefit:
+        this fits the seperation of concerns of React by having CSS and Javascript seperated
+        this also allows the component to be more reusable
+    4. CSS in JS:
+      this is when we are writing CSS in a .js file, which is the same file the components are defined
+      This follows the React philosophy what everything defines a component are in one file
+    5. Utility first CSS framework:
+      Like tailwindcss
+        which we can use to do CSS without leaving the JSX Markup
+    6. Or we can choose the option of not using CSS at all.....
+      we can use UI libraries, like MUI, Chakra UI, Mantine
 Rending List:
   Rendering a components for each element of the array
 
