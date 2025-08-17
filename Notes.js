@@ -572,6 +572,9 @@ React:
           <PostContext.Provider value={[an object that contains all the values that we need to pass to the child components]}>
       3. Consumers:
         they are all the components that read the value we passed into the Provider
+        HOW?
+          with destructuring we can take out the values we need
+          const {} = useContext([the Provide])
       NOTE:
         what happens when the value updates?
           all the Consumers will be re-rendered
