@@ -552,7 +552,7 @@ React:
         which we can use to do CSS without leaving the JSX Markup
     6. Or we can choose the option of not using CSS at all.....
       we can use UI libraries, like MUI, Chakra UI, Mantine
-  Context API:
+  Context API: (Atomic-Blog for template)
     WHAT IS IT?
       this is a system to pass data throughout the app without manually passing the props down the tree
       this allows us to "broadcast" global state to the entire app
