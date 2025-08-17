@@ -560,10 +560,16 @@ React:
       1. Provider: 
         this React component that gives all the children components access to a "value"
         it can be placed anywere, but usually in the top of the tree
+        HOW?
+          the name start wil upper case because it is also a component, which also means it need to be create outside the App Component
+          const PostContext = createContext();
       2. "value":
         this is the data that we want to make available
         this value is passed into the Provider
         USUALLY contains some states and setter functions
+        HOW?
+          to provide the value to the child components we need to do this
+          <PostContext.Provider value={[an object that contains all the values that we need to pass to the child components]}>
       3. Consumers:
         they are all the components that read the value we passed into the Provider
       NOTE:
