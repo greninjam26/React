@@ -496,6 +496,23 @@ React:
     THIS only works with client side, server side routing is different
     REACT ROUTER is the external packages most people use to handle Routing in React(routing is another thing React is missing)
     THIS IS ESSENTIAL because all single page application needs it
+    NOTE:
+      we can store the states that is related to how the UI is display into the URL as UI state
+        like:
+          open close panel, currently selected list item, list sorting order, applied list filter
+        WHY?
+          this way the the state stored is global, which can be accessed by all the components
+          this way we don't need to create the state in the parent components and pass it through all the child component to reach where it is needed(prop drilling)
+          it is also a good way to pass data between pages
+          this also allows use to be able to bookmark and share the page with its current value
+        HOW to use it?
+          path:
+            the link that lead to the page
+          params: (WorldWise: the city name)
+            these information will be passed to the page it is currently in
+            they are like parameters of a function
+          query string: (WorldWise: the city geolocation)
+            they are like information related to the params
   Single Page Application(SPA):
     this is application that is entirely executed on the client side(browers)
     They completely rely on Routing where each URL have a matching page
@@ -512,6 +529,7 @@ React:
         1. if someone change the style of the class we won't know what will be effected
         2. if someone add a new class with the same name things become chaotic
     3. CSS Modules, they are a external CSS file designed for each file
+      CHECK THE WorldWise APP for the format
       Benefit:
         this fits the seperation of concerns of React by having CSS and Javascript seperated
         this also allows the component to be more reusable
