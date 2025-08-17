@@ -552,6 +552,26 @@ React:
         which we can use to do CSS without leaving the JSX Markup
     6. Or we can choose the option of not using CSS at all.....
       we can use UI libraries, like MUI, Chakra UI, Mantine
+  Context API:
+    WHAT IS IT?
+      this is a system to pass data throughout the app without manually passing the props down the tree
+      this allows us to "broadcast" global state to the entire app
+    PARTS:
+      1. Provider: 
+        this React component that gives all the children components access to a "value"
+        it can be placed anywere, but usually in the top of the tree
+      2. "value":
+        this is the data that we want to make available
+        this value is passed into the Provider
+        USUALLY contains some states and setter functions
+      3. Consumers:
+        they are all the components that read the value we passed into the Provider
+      NOTE:
+        what happens when the value updates?
+          all the Consumers will be re-rendered
+    SOLVING PROBLEMS:
+      1. prop drilling
+        Context API allows use to pass state from the parent component directly to the next children components, without prop drilling
 Rending List:
   Rendering a components for each element of the array
 
