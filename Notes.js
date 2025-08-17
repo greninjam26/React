@@ -511,8 +511,19 @@ React:
           params: (WorldWise: the city name)
             these information will be passed to the page it is currently in
             they are like parameters of a function
+            HOW IT WORKS?
+              const {} = useParams();
+              useParams() returns an object that contains all the params in the URL
+              we can use a value to store it and destructure it
           query string: (WorldWise: the city geolocation)
             they are like information related to the params
+            HOW IT WORKS?
+              usually named this way
+              const [searchParams, setSearchParams] = useSearchParams();
+              seachParams is an object with all the data from a query string
+      Programmtic Navigation:
+        this is when the page automaticly changes the URL without the User clicking on any links
+        USUALLY when the user submit a form
   Single Page Application(SPA):
     this is application that is entirely executed on the client side(browers)
     They completely rely on Routing where each URL have a matching page
