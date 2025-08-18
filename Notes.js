@@ -345,7 +345,7 @@ React:
     State Management:
       3. think about states
         when to use it
-        type of state: local or global
+        type of state(base on accessibility): local or global
           Local State:
             they are only access to the compoent it is created in and all its child components through props
             they are states that only needed by a few components
@@ -353,10 +353,24 @@ React:
               Lifting state up:
                 this basicly is move the state declaration from one component to its closest parent component then the state can be passed into all the child components through props
             NOTE: we should always start with local states and only change it global when we really need it
+            USE:
+              put it in a local component with useState, useReducer, useRef
           Global State:
             we need external libaray to help to organize these
             these are the states that many component in the app need
             it is also called Shared State, which means all the component can access it. 
+            USE:
+              perferably UI states: this is where we put the state in the Context API do make it accessiable to all the components but we still need useState or useReducer to update the states
+              Remote or UI: we can also go for 3rd party libraries to manage global states and remote states
+              we can also store the states in the URL to pass between pages
+          we can also store the states in localStorage and the browers
+        type pf state(base on domain): Remote or UI
+          Remote State:
+            all the application data that is loaded the remote servers(use an API)
+            usually asynchronous and need to refetched and updated
+          UI State:
+            everything else
+            They are usually synchronous and usually stored in the application and will not interact with anything else
         where to place each state
       4. establish data flow
         one-way data flow
