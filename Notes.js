@@ -504,8 +504,9 @@ React:
               MUST: To make US and React to recognize this as a hook the name have to start with use
   Optimizition:
     1. Prevent wasted Renders
-      memorize components with memo
-      memorize objects with useMemo and useCallback
+      memoize components with memo
+      memoize objects with useMemo
+      memoize functions with useCallback
       pass elements as children or regular props
       Wasted Renders:
         REVIEW:
@@ -523,6 +524,33 @@ React:
           1. if there are slow component inside another component, and it is getting re-rendered when it is not needed to and is slowing down the re-render and we factor everything else out and pass the slow component in as a children
           this way the slow component will not be loaded, when it is not needed to
           BECAUSE the slow component is outside of the re-rendering component so it is loaded before and not effected by the re-render
+      Memoization:
+        this is an optimization technique that when an function is executed the result will be stored in the Cache, so if we call the function again with te same argument then the function will not be executed again and just take the result from the cache
+        memo(const [name] = memo([component])):
+          this will make the component not re-render when the parent component re-renders, unless the props changes
+          NOTE: 
+            it will still re-render when its state changes or when the context it subscibe to changes
+            only make sense to memoize the component that is slow to re-render or the once that re-renders very often and have the same props
+        useMemo(const [name] = useMemo(function(){[can have calculations]return[object]},[dependency array]))
+         and 
+        useCallBack(const [name] = useCallBack(function [name](){[things need to be executed]},[dependency array])):
+          useMemo, memoize the value
+          useCallBack, memoize the entire function and call it when needed
+          useCallBack is a special case of useMemo, instead of object it is for functions
+          they will memoize objects and functions between render to preserve their value
+          it have a dependency array if any value in there change the object or function will also be recreated
+          NOTE: state setter function have stable state so they are not recreated on every render, so no need to memoize them or pass them into the dependency array
+          USE:
+            1. to make memo() work
+            2. memoize expensive values so it don't get recalculated everytime
+            3. memoize the values that used in dependency array of another hook
+      Optimize Context:
+        we only need to optimize only when all three are true:
+          1. the state in the context need to change all the time
+          2. the context have many consumers
+          3. the app is slow and laggy
+        there are no fix recipe for how to optimize the context only tips
+          1. for different sections of the app, have all of them passed in to the provide with children so all of them don't get re-rendered everytime or wrap the less used in memo()
     2. Improve app speed or responsiveness
       useMemo, useCallback, useTransition
     3. Reduce Bundle Size
