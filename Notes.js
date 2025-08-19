@@ -553,9 +553,21 @@ React:
           1. for different sections of the app, have all of them passed in to the provide with children so all of them don't get re-rendered everytime or wrap the less used in memo()
     2. Improve app speed or responsiveness
       useMemo, useCallback, useTransition
-    3. Reduce Bundle Size
+    3. Reduce Bundle Size(most important)
       reduce the amount of 3rd-party packages
       use splitting and lazing loading
+      Bundle:
+        it is the javascript file the contains the entire application code
+        it is called this because Webpack or Vite bundled all the codes in the one big bundle that contains everything the application needs
+      Bundle Size:
+        this is the amount of code user need to download from the server to use the application
+        this is the most important thing we need to optimize because it directly effect how long it will take for the user to be able to start to run the app
+      Code Splitting and Lazy Loading:
+        this is a technique that by splitting the bundle into many different smaller sections and can be downloaded by the user whenever the application needs
+        MOST COMMON way to split(Check WorldWise for the format):
+          split all the files base on the Route, or on the Page level
+          this means spliting the code base on the page
+
   Routing:
     in web development we match different URLs to different views in the UI
     in React we match the URLs to different components
