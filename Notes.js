@@ -411,7 +411,7 @@ React:
               BUT dependency array can change that.
               Without it React don't know when to run the effects
               this array contains dependences, and whenever one of them changes the effect will be executed
-              These DEPENDENCES are all the states and props used in the effect
+              These DEPENDENCES are all the states, props, context values, and reactive values used in the effect
               so basicly useEffect is just an event lisntener that is waiting for one of the dependences to change
               There are THREE TYPES:
                 1. [x, y, z]
