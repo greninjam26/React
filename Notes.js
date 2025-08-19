@@ -502,6 +502,28 @@ React:
               it is just a javascript function that can recive and return any data
               It have to have one or more React Hooks
               MUST: To make US and React to recognize this as a hook the name have to start with use
+  Optimizition:
+    1. Prevent wasted Renders
+      memorize components with memo
+      memorize objects with useMemo and useCallback
+      pass elements as children or regular props
+      Wasted Renders:
+        REVIEW:
+          when does the component render:
+            1. when the component state changes
+            2. when there is a change in the context that the component is subscribed to
+            3. when the parent components re-renders
+              NOT when the props change, 
+          when the component re-render the DOM doesn't always re-render, so this can be a every wasteful operation that does absolute nothing
+        What is it?
+          waste renders are renders that does not produce changes in the DOM
+        THIS usually is not an issue, because React is very fast
+        BUT if a component renders very slow or the render happen too frequently it can be an issue
+    2. Improve app speed or responsiveness
+      useMemo, useCallback, useTransition
+    3. Reduce Bundle Size
+      reduce the amount of 3rd-party packages
+      use splitting and lazing loading
   Routing:
     in web development we match different URLs to different views in the UI
     in React we match the URLs to different components
