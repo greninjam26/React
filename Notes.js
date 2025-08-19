@@ -519,6 +519,10 @@ React:
           waste renders are renders that does not produce changes in the DOM
         THIS usually is not an issue, because React is very fast
         BUT if a component renders very slow or the render happen too frequently it can be an issue
+        How to fix:
+          1. if there are slow component inside another component, and it is getting re-rendered when it is not needed to and is slowing down the re-render and we factor everything else out and pass the slow component in as a children
+          this way the slow component will not be loaded, when it is not needed to
+          BECAUSE the slow component is outside of the re-rendering component so it is loaded before and not effected by the re-render
     2. Improve app speed or responsiveness
       useMemo, useCallback, useTransition
     3. Reduce Bundle Size
