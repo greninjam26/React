@@ -753,4 +753,9 @@ NOTE:
         1. the action go into the Thunk and some asynchronous code is executed(data fetching)
         2. (data fetching) when the data arrives it is stored in action.payLoad
         3. the action is passed into the store and state is updated
+NPM packages:
+  redux
+  react-redux
+  redux-thunk
+  redux-devtools-extension
 */
