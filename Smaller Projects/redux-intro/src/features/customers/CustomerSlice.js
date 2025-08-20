@@ -23,13 +23,13 @@ export default function customerReducer(state = initalStateCustomer, action) {
 export function createCustomer(fullName, nationalID) {
 	return {
 		type: "customer/createCustomer",
-		payLoan: { fullName, nationalID, createdAt: new Date().toISOString },
+		payLoad: { fullName, nationalID, createdAt: new Date().toISOString },
 	};
 }
 
 export function updateName(fullName) {
 	return {
 		type: "customer/updateName",
-		payLoan: fullName,
+		payLoad: fullName,
 	};
 }
