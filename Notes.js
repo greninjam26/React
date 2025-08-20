@@ -744,8 +744,13 @@ NOTE:
       it gives us the ability to run codes after they have been dispatched and before reaching the store
       NOTE: we can write this ourselves BUT we usually use a thrid party library
         the most popular one with Redux is call Redux Thunks
+      How it is used?(Redux-intro: store.js and AccountSlice.js)
+        1. install in the middleware package
+        2. apply the middleware to the store
+        3. use the middleware in the action creator functions
     Redux Thunks:
-      1. the action go into the Thunk and some asynchronous code is executed(data fetching)
-      2. (data fetching) when the data arrives it is stored in action.payLoad
-      3. the action is passed into the store and state is updated
+      What is it?
+        1. the action go into the Thunk and some asynchronous code is executed(data fetching)
+        2. (data fetching) when the data arrives it is stored in action.payLoad
+        3. the action is passed into the store and state is updated
 */
