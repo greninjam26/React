@@ -707,6 +707,16 @@ Debugging:
 Create React App:
   Create React App:
     npx create-react-app [file name]
+
+Project Planning:
+  1. gather all the requirement and features of the application
+  2. divide the application into pages with these informations
+    Think about the overall and page-level UI
+    Break the desired UI into components
+    if we want we can design and build a state version
+  3. divide the application and its features into different feature categories
+    for each categories we need to think about the state managment and data flow
+  4. which libraries we are going to use?
 */
 /* Redux(check redux-intro for format):
 What is it?
