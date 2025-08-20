@@ -1,4 +1,4 @@
-/*
+/* History
 Old Websites(server-side rendering):
   before 2010, all the website are all server-side rendering
   this means all the HTML, CSS, and javascript codes are all loaded on the server
@@ -32,8 +32,8 @@ Library:
       it is a View Library, because all it does is drawing components on UI
       so if we want to build an application with React we need to add a lot of external libraries to make everything work
       BUT React is so popular there are a lot of external librarie to choose from
-
-React:
+*/
+/* React:
   With React we don't need to have a html file controlling everything, all the code can be in javascript
   What it is:
     Extremely Popular:
@@ -707,4 +707,28 @@ Debugging:
 Create React App:
   Create React App:
     npx create-react-app [file name]
+*/
+/* Redux:
+What is it?
+  it is an 3rd party library that is used to manage global state in a web application
+  it is very easy to connect to React with react-redux
+  the structure of Redux is very similar to useReducer
+  NOTE: historically Redux are used in basicly all the React applications, but now there are so many alternatives, Redux is not used much any more unless the app need a lot of global UI state that need to update frequencly
+  There are 2 different versions of Redux:
+    1. Classic Redux
+    2. Modern Redux Toolkit 
+How it works:
+  instead of a reducer, Redux have a store
+  this store is where all the global states lives
+  there is also one or more reducers in the store
+  these reducers are the same as the reducer functions in useReducer
+  they will use the current state and the action to calculate the next state
+  the reason for multiple reducers in this is because we need one reducer per app feature
+  USUALLY we use Action Creator Functions to automate the process of creating an action
+Steps:
+  1. call the action creator to create the action
+  2. dispatch the action through the dispatch function
+  3. the action will be pass to the store and the corresponding reducer will update the state
+  4. the DOM will be updated in response of the state change
+GOAL: make the state update logic seperate from the application logic
 */
