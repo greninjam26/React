@@ -716,7 +716,7 @@ What is it?
   NOTE: historically Redux are used in basicly all the React applications, but now there are so many alternatives, Redux is not used much any more unless the app need a lot of global UI state that need to update frequencly
   There are 2 different versions of Redux:
     1. Classic Redux
-    2. Modern Redux Toolkit 
+    2. Modern Redux Toolkit(@reduxjs/toolkit)
       Redux Team want people to use this over classic Redux because it is an opinionated approach that reinforces the Redux best practices the community learned over the years
       Benefit?
         1. this allows use to write less code to archieve the same result

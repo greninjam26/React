@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import "./index.css";
 import App from "./App";
-import store from "./store";
+import store from "./store Classic";
 
 // for learning purpose this will run the code in store.js
 // import "./store";
