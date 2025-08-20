@@ -576,6 +576,22 @@ Library:
     THIS only works with client side, server side routing is different
     REACT ROUTER is the external packages most people use to handle Routing in React(routing is another thing React is missing)
     THIS IS ESSENTIAL because all single page application needs it
+    React Router Loader:
+      the loaders are function we create that can fetches data from an API
+      We then add the Loader to an Route, when the code reach the route the loader will be executed
+      STEPS:
+        1. create the loader(fast-react-pizza : Menu.jsx )
+        2. provide the loader(App.jsx)
+        3. provide data to the page(useLoaderData(), detail in Menu.jsx)
+      Convention:
+        Loaders for the page is created inside the file for the page
+        also name the function loader()
+    React Router Actions:
+      instead of loader, we can also create action functions and connect it to the Route
+      this allows us to be able to create actions base on the data from the page
+      LIKE: the form(CreateOrder.jsx):
+        this way we don't need to create all the states for each input and selector field. 
+        this allows us go back to how HTML reads and submit the form without all the state changes
     NOTE:
       we can store the states that is related to how the UI is display into the URL as UI state
         like:
