@@ -708,7 +708,7 @@ Create React App:
   Create React App:
     npx create-react-app [file name]
 */
-/* Redux:
+/* Redux(check redux-intro for format):
 What is it?
   it is an 3rd party library that is used to manage global state in a web application
   it is very easy to connect to React with react-redux
@@ -731,4 +731,6 @@ Steps:
   3. the action will be pass to the store and the corresponding reducer will update the state
   4. the DOM will be updated in response of the state change
 GOAL: make the state update logic seperate from the application logic
+Connect Component to Redux: 
+  check BalanceDisplay.js for the old way of doing things
 */
