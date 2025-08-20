@@ -717,6 +717,13 @@ What is it?
   There are 2 different versions of Redux:
     1. Classic Redux
     2. Modern Redux Toolkit 
+      Redux Team want people to use this over classic Redux because it is an opinionated approach that reinforces the Redux best practices the community learned over the years
+      Benefit?
+        1. this allows use to write less code to archieve the same result
+        2. we can write code that "mutates" the state inside the reducer, BUT it will be converted to immutable logic behind the scene by "Immer" library
+        3. action creators will automaticly be create from the reducers
+        4. thunk and devetools will be automaticly setup
+    NOTE: we can mix these two methods together, they are compatiable
 How it works:
   instead of a reducer, Redux have a store
   this store is where all the global states lives
