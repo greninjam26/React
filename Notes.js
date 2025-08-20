@@ -733,4 +733,19 @@ Steps:
 GOAL: make the state update logic seperate from the application logic
 Connect Component to Redux: 
   check BalanceDisplay.js for the old way of doing things
+NOTE:
+  asynchronous operations like API calls can't be inside the reducers in the store, because they need to be pure functions
+  SO should we fetch the data then do the dispatch call?
+    NO because ususally we want to keep the components clean of API calls
+    we also want to keep all the fetching calls encapsolated in a central place and not scatter all over the place in the application
+  THEN where would we do API calls?
+    MIDDLEWARE:
+      this is a function sits between dispatching the action and the store
+      it gives us the ability to run codes after they have been dispatched and before reaching the store
+      NOTE: we can write this ourselves BUT we usually use a thrid party library
+        the most popular one with Redux is call Redux Thunks
+    Redux Thunks:
+      1. the action go into the Thunk and some asynchronous code is executed(data fetching)
+      2. (data fetching) when the data arrives it is stored in action.payLoad
+      3. the action is passed into the store and state is updated
 */
