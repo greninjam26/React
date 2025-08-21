@@ -818,4 +818,7 @@ SetUp(Tailwind Official Website: Installation Tab: this is for Vite)(or the fast
   this create the config files
   3. In the tailwind.config.js file, change content:[] to content:[things....(check the offical website)]
   4. install tailwind prettier extension from the github and add the config file
+Responsive Design:
+  Tailwind is mobile first, which means we need to design the application from smaller screen to large.
+  All the default breakpoints iwth media query are min-width
 */
