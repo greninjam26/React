@@ -812,4 +812,10 @@ CONS:
   2. we need to relearn everything by learning all the class names in Tailwind(BUT you'll memorize it in a few days)
   3. we need to install and set it up everytime we need it in a project
   4. You are giving up on Vanilla CSS
+SetUp(Tailwind Official Website: Installation Tab: this is for Vite)(or the fast-react-pizza project):
+  1. npm intall...(check official website)
+  2. npx tailwindcss init -p
+  this create the config files
+  3. In the tailwind.config.js file, change content:[] to content:[things....(check the offical website)]
+  4. install tailwind prettier extension from the github and add the config file
 */
