@@ -792,3 +792,24 @@ NPM packages:
   redux-thunk
   redux-devtools-extension
 */
+/* Tailwind:
+What is it?
+  A utility-first CSS framework packed with utility classes like flex, text-center and rotate-90 that can be composed to build any design, directly in the markup(HTML, JSX)
+Utility-first CSS(or Atomic CSS) approach:
+  this is when we write a lot of small classes that have one single purpose, then combine them together to build the entire layout
+NOTE: Tailwind did not invent this approach, they just made it very popular by making this framework
+USE:
+  we will not be writting any of this small classes, but we will be using all the hundreds of small classes tailwind already made to build any layout we want
+PRO: 
+  1. we don't need to worry about classNames ever again
+  2. we don't need to jump between files when writing style and markup
+  3. we can easier understand any styling in application that use tailwind
+  4. Tailwind already made many good design decisions for us, this we can build more consistant and better looking UIs
+  5. we can save a lot of time by writing less CSS and build responsive design very fast
+  6. Tailwind's documetation and VSCode integration are the top of the class
+CONS:
+  1. with all the classes, Tailwind make the markup a mess and sometimes even unreadable(BUT you'll get use to it)
+  2. we need to relearn everything by learning all the class names in Tailwind(BUT you'll memorize it in a few days)
+  3. we need to install and set it up everytime we need it in a project
+  4. You are giving up on Vanilla CSS
+*/
