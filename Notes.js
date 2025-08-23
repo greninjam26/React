@@ -822,3 +822,18 @@ Responsive Design:
   Tailwind is mobile first, which means we need to design the application from smaller screen to large.
   All the default breakpoints iwth media query are min-width
 */
+/* Styled Components(the-wild-oasis)
+they allow us to recreate html element as react components with css styles added to it
+benefit:
+  the styled components are only scoped to the component it is in
+  this eliminate the problem with global css
+  DON'T need to pass in props that handle them with these styled components
+Javascript Logic:
+  becuase the styles are in `` so with ${} we can use javascript logic to conditionally apply styles
+  we can also do this with a variable and store the style in the variable as ``
+  BUT the extension will not work unless we do css``
+  AND without "css" function something just don't work with `` in the variable
+intall:
+  npm i styled-components
+
+*/
