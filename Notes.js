@@ -843,7 +843,7 @@ intall:
   npm i styled-components
 
 */
-/* Superbase
+/* Supabase
 What is it?
   a service that allows developers to earily create a back-end with Postgres database
   it will automaticly create a database and a matching API so we can easily request and receive data from the server
