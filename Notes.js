@@ -38,6 +38,12 @@ Library:
   What it is:
     Extremely Popular:
       Most used framework on npm
+      Examples:
+        npm i react-icons
+        React-Router
+        Redux
+        Tailwind
+        Styled-Components
     Declarative(we only need to tell javascript what the web should look like and not how to make it look like that):
       we describe how each component looks like through a declarative syntax called JSX
       with this we don't work with the DOM at all, we just tell React what the page should look like, and React with deal with the rest
@@ -836,4 +842,11 @@ Javascript Logic:
 intall:
   npm i styled-components
 
+*/
+/* Superbase
+What is it?
+  a service that allows developers to earily create a back-end with Postgres database
+  it will automaticly create a database and a matching API so we can easily request and receive data from the server
+  NO need to deal with backend development
+  it also includes user authentication and file storage
 */
