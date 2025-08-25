@@ -850,7 +850,7 @@ What is it?
   NO need to deal with backend development
   it also includes user authentication and file storage
 */
-/* React Query
+/* React Query (now known as: TanStack Query)
 What is it?
   a very powerful library for managing remote state what is stored in a server
   it will be able to allow us to fetch data from APIs with a lot less code
@@ -869,4 +869,8 @@ Why?
     React Query(best and most popular option)
     SWR
     Redux Toolkit query
+Install:
+  npm i @tanstack/react-query
+  devtool(need to have the same version as react-query):
+    npm i @tanstack/react-query-devtools
 */
