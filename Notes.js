@@ -850,3 +850,23 @@ What is it?
   NO need to deal with backend development
   it also includes user authentication and file storage
 */
+/* React Query
+What is it?
+  a very powerful library for managing remote state what is stored in a server
+  it will be able to allow us to fetch data from APIs with a lot less code
+  it also can manage those data obtained from the fetch
+  it will also make the user experience of our app much better
+Features:
+  1. data is stored in the cache and can be reused in different plances in our applicaiton, this way we don't need to run the same fetch request multiple times throughout the app
+  2. it will also provide loading and error states so we can handle them
+  3. it will also re-fetch the data when needed to keep the states synched
+  4. it will also pre-fetch the data that will be needed for the next page, this way the loading spinners can be avoided
+  5. it is very easy to mutate or update the remote states through many tools build into react quary
+  6. loaded data can be still displaced while the user is offline
+Why?
+  because remote states are asynchronous and shared by many different users, which make it hard to keep everything in synch with the data in the remote server. 
+  this is why we use libraries like:
+    React Query(best and most popular option)
+    SWR
+    Redux Toolkit query
+*/
