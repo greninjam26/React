@@ -44,6 +44,8 @@ Library:
         Redux
         Tailwind
         Styled-Components
+        format date: 
+          npm i date-fns
     Declarative(we only need to tell javascript what the web should look like and not how to make it look like that):
       we describe how each component looks like through a declarative syntax called JSX
       with this we don't work with the DOM at all, we just tell React what the page should look like, and React with deal with the rest
@@ -873,4 +875,29 @@ Install:
   npm i @tanstack/react-query
   devtool(need to have the same version as react-query):
     npm i @tanstack/react-query-devtools
+How to use:
+  1. create this go override the default setting of React Query
+    const queryClient = new QueryClient({
+      defaultOptions: {
+        queries: {
+        // this is the time that it will take for the data to go stale, then React Query will automaticly refetch the data when we leave and re-enter the tab
+        // with it at 0, this means data will always be automaticly refetch when we switch tabs. 
+          staleTime: 0,
+        },
+      },
+    });
+  2. this will allow everything in App to be able to use React Query
+    <QueryClientProvider client={queryClient}>
+    // this adds the devtool
+      <ReactQueryDevtools initialIsOpen={false} />
+      <App/>
+    </QueryClientProvider>
+  3. this is how data is fetched with React Query
+  we can destructure the data returned from useQuery() and only use the ones we need
+    const {} = useQuery({
+      // this is an unique key that identifies the query
+      queryKey: ["cabin"],
+      // this function will be doing the fetching of the data and need to return a promise
+      queryFn: getCabins,
+    });
 */
