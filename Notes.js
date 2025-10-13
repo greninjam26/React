@@ -900,4 +900,9 @@ How to use:
       // this function will be doing the fetching of the data and need to return a promise
       queryFn: getCabins,
     });
+  4. how to mutate the data in the API
+    const { isLoading, mutate } = useMutation({
+      // this is the function that is called when the mutate function is call
+      mutationFn: deleteCabin,
+    });
 */
