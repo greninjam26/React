@@ -48,6 +48,8 @@ Library:
           npm i date-fns
         pop up messages:
           npm i react-hot-toast
+        handle form submition: 
+          npm i react-hook-form
     Declarative(we only need to tell javascript what the web should look like and not how to make it look like that):
       we describe how each component looks like through a declarative syntax called JSX
       with this we don't work with the DOM at all, we just tell React what the page should look like, and React with deal with the rest
