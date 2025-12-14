@@ -96,6 +96,14 @@ Library:
           This function telling the component what and how to render. 
           Purpose:
             this allows the component to not only have some JSX attached to it, but also receive more JSX.
+          How to Use:
+            passing in a props called render, which is a function that tells the component what to render and how to render it. This function is a list of instruction of how the component should render things. 
+            In Other Words: instead of having the function that renders the information in the component, we pass in a function that handle the render instead. This way we can make the component display the same style of information in many different ways. This way we don't need to pass in all the information regarding the information that is being rendered. The information is not in the component so we can't just pass in the JSX as a children props. 
+            Example: 
+              render={(product) => (
+                <ProductItem key={product.productName} product={product} />
+              )}
+            When we can't use the children props to pass in JSX, and we need to give the component a description on how to render, then we use this render props
         Compound Component Pattern: 
           Compound means that we'll have multiiple components together to create one super component. 
           this allows the component to be self sustained without need to the parent component to manage the states, the super component can do that itself. 
