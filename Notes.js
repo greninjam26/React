@@ -108,6 +108,18 @@ Library:
           Compound means that we'll have multiiple components together to create one super component. 
           this allows the component to be self sustained without need to the parent component to manage the states, the super component can do that itself. 
         a lot more....
+        Higher-Order Components(HOC)(Not very important):
+          No one really write them by hand anymore...
+          what it is:
+            this is just a component that take in another component and return a better version of it
+          Common Sense:
+            name: with[the function that is added]
+            pass in: the function that is being added to the component
+            return: a new component with the new functionality
+          How it works:
+            in the middle there will be the component that we passed in with its props spread then with the new props add in. 
+            like:
+              <WrappedComponent {...props} items={displayItems} />
   Components:
     each component have its own data, logic, and appearance
     nested components are used a lot
