@@ -107,6 +107,14 @@ Library:
         Compound Component Pattern: 
           Compound means that we'll have multiiple components together to create one super component. 
           this allows the component to be self sustained without need to the parent component to manage the states, the super component can do that itself. 
+          What it is:
+            it is a set of related components that work together to archieve a common and useful task. 
+            like counter, modal window, etc.
+          How to use: check the folder for the example code
+            1. create the context
+            2. create the parent component
+            3. create child components to help to complete this task
+            4. add the child components as properties to the parent component
         a lot more....
         Higher-Order Components(HOC)(Not very important):
           No one really write them by hand anymore...
