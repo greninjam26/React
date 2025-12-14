@@ -85,6 +85,21 @@ Library:
     Create by fackbook(Meta):
       Create by Jordan Walke in 2011
       in 2013 it is open sourced
+  Reusability: 
+    what to reuse:
+      UI: we use components and props(as an API for the component to let us customize the component, by using children props we can pass in content and other components)
+      Stateful logic(Logic with at least one react hooks): we can write our own custom hooks, which can contain many different other hooks.
+    what if we need to reuse both of them at the same time?
+      Advanced React Patterns: they are pattens, which means that they are not build into react they are just a way to use react that people summarized over time. 
+        Render Props Pattern(this was very popular before we can reuse stateful logic with custom hooks):
+          this allows the user of the component to have complete control over that the component is rendering by passing in a function as a prop. 
+          This function telling the component what and how to render. 
+          Purpose:
+            this allows the component to not only have some JSX attached to it, but also receive more JSX.
+        Compound Component Pattern: 
+          Compound means that we'll have multiiple components together to create one super component. 
+          this allows the component to be self sustained without need to the parent component to manage the states, the super component can do that itself. 
+        a lot more....
   Components:
     each component have its own data, logic, and appearance
     nested components are used a lot
