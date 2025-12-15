@@ -732,6 +732,16 @@ Library:
     SOLVING PROBLEMS:
       1. prop drilling
         Context API allows use to pass state from the parent component directly to the next children components, without prop drilling
+  React Portal(Not part of React, it is part of React DOM):
+    What it is:
+      a feature that essentially let us to to render an element outside the parent component's DOM structure, while still keeping the element in the original position in the component tree. 
+      In other words: we can render any component whereever we want, but still have it in the same position in the component tree so that the props still works normally. 
+    What is it used in:
+      this is good for those components that we want to still on top of other components, like Modal Windows, Tool Tips, Menus, etc.
+    Why:
+      this is to take the component out from the parent to avoid the situation where the parent have overflow set to hidden and cut off the component. 
+      basicly for safty
+
 Rending List:
   Rendering a components for each element of the array
 
