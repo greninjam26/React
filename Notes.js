@@ -1,9 +1,57 @@
 /* History
-Old Websites(server-side rendering):
+Old Websites(server-side rendering)(php, WordPress, Next.js):
   before 2010, all the website are all server-side rendering
   this means all the HTML, CSS, and javascript codes are all loaded on the server
   because there are no a lot of code in javascript, so it works
-New Way(client-side rendering):
+  1. the website is generated on a web server, then the server send the generated website to the client when it is requested
+  Pros: 
+    1. the initial page loads are very fast
+      1. the client don't need to download any javascript at all, it only need to load the HTML for the web page
+      2. the data is fetched before the HTML is even send to the client, the data will be incorperated into the page when it arrives on the client side
+    2. SEO(search engine optimization):
+      this makes the content easier for search engines to index
+  Cons: less interactive
+    when switching between pages, we might need to download all the information needed and full page reload are necessary. 
+    BUT framework like Next.js are bluring the lines
+      they allow developper to create server side rendered pages, that can hydrate on the client side later
+  Uses:
+    1. content-driven websites or app where SEO is very important and they are essential in trying to get client to the website, like E-commerce, blogs, news, marketing websites, etc.
+  Two types:
+    Static: the HTML is only generated once when the developper upload it
+    Dynamic: the HTML is generated at each request, it is good when the data changes often. (some people consider this as the only true SSR)
+  Typical Timeline:
+    1. the client requests the page
+    2. the server fetches the data
+    3. the server renders the page the client requested
+    4. the HTML, CSS, javascript and related informations are send to the client
+    5. the page is displayed
+    NOTE: this is where the Content Paint happenes, also the First Paint
+    6. since an javascript bundle is still send to the client, the client side will process the javascript and through the process of Hydrate to make the page interactive. 
+
+New Way(client-side rendering)(React, etc.):
+  1. HTML is rendered on the client using Javascript
+  Cons: 
+    1. the initial load of the page is slow
+      1. the javascript buddle need to be completely downloaded before the web page can load
+      2. the data can only be fetched after the components are mounted(after the client renders it)
+    2. if SEO is a concern:
+      since everything is fetched and downloaded later, search engines might find a blank page when indexing(this is getting better though, but is SEO is super important we need server-side rendering)
+    NOTE: request waterfall: the main complains about client-side rendering
+  Pros: it is highly interactive 
+    all the code are downloaded, except some data
+  Uses:
+    1. when we want to create highly interactive single page applications
+    2. when SEO doesn't matter at all, like the wild oasis app, it is an internal application for the company employees or it is locked behind an login, or both.
+  Typical Timeline:
+    1. the client make a request
+    2. the server only have a empty page with some CSS and the javascript bundle attached to it. The server will send these information for the client that made the request
+    3. when the javascript bundle is downloaded, the app notices that it need additional data. 
+    4. then the app will display a spinner 
+    NOTE: First paint(FCP): this is when the app first display something
+    5. while the data is being fetched from the server, like an API endpoint. This server can be different from where the page came from. 
+    6. when the data arrives, the app will rerender itself with the new data. 
+    NOTE: This is where we can say we had the initial page load, metric of Largest Contentful Paint(LCP) or content paint for short. 
+
   
 The Goal of Front End Web APP(when developping a single paged app):
   handling the data and updating the GUI
@@ -966,4 +1014,8 @@ How to use:
       // this is the function that is called when the mutate function is call
       mutationFn: deleteCabin,
     });
+*/
+/* Next.js
+Back Story:
+  is it a blend of server side rendering and client side rendering to obtain the bext of both world. Frameworks like Next.js and Remix are improvements from old php and WordPress, and also using the modern client side rendering methods like React, Angular, Svelte, Vue
 */
