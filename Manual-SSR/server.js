@@ -7,6 +7,8 @@ const { parse } = require("url");
 const { renderToString } = require("react-dom/server");
 const React = require("react");
 
+// we wouldn't normally have this here
+// with Next.js there are bundler that inject this here with this code in another file
 const pizzas = [
 	{
 		name: "Focaccia",
@@ -69,6 +71,7 @@ function MenuItem({ pizza }) {
 
 // since we only need this once so it is easier to just use a Sync version to make it easier to store into a variable
 const htmlTemplate = readFileSync(`${__dirname}/index.html`, "utf-8");
+const clientJS = readFileSync(`${__dirname}/client.js`, "utf-8");
 
 const server = createServer((req, res) => {
 	const pathName = parse(req.url, true).pathname;
@@ -82,10 +85,11 @@ const server = createServer((req, res) => {
 		// res.end(htmlTemplate);
 		// this one is not really real HTML code, so somethings are broken(no proper HTML structure)
 		// res.end(renderedHtml);
-    // this way this is real HTML code, is the header and everything, but with only this there are no interactivity, the buttons are not working at all(only HTML is passed through, not javascript what so ever)
+		// this way this is real HTML code, is the header and everything, but with only this there are no interactivity, the buttons are not working at all(only HTML is passed through, not javascript what so ever)
 		res.end(html);
-	} else if (pathName === "/test") {
-		res.end("TEST");
+	} else if (pathName === "/client.js") {
+		res.writeHead(200, { "Content-type": "application/javascript" });
+		res.end(clientJS);
 	} else {
 		res.end("The URL can't be found");
 	}
