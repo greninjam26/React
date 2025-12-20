@@ -27,6 +27,24 @@ Old Websites(server-side rendering)(php, WordPress, Next.js):
     5. the page is displayed
     NOTE: this is where the Content Paint happenes, also the First Paint
     6. since an javascript bundle is still send to the client, the client side will process the javascript and through the process of Hydrate to make the page interactive. 
+  Hydrate: in the case of a React App(this is only an overview on how Hydrate works, it is not exactly how it works in Next.js, especially with the new App Router)
+    it adds back the interactivity and event handlers that is lost during the server-side rendering
+    why?: 
+      we need this because server side rendering removes all the interactivity a React App have and only returns the HTML to send to the client to be rendered. 
+      NAME:
+        the "dried" HTML is hydrated with the "water" of interactivity and event handlers
+    How it work?:
+      1. the Javascript bundle is also downloaded from the original React component tree
+      2. then compare the DOM tree is the component tree
+      3. if it is the exact same, it save the time that needs to create new components. Hydrate just try to adopt the existing DOM. 
+      4. it just try to finish the SSR process and get the client side to the same as the original React component tree
+      NOTE: when the client side DOM tree does not match the React component tree, after hydration the page is going to change, this can result hydration error. Normally is the trees match, the hydrate process only take a few seconds. 
+        Common hydration errors causes:
+          1. incorrect nesting of HTML element, like using a <div> in a <p>
+          2. the data used to render in the server are different from the data used in rendering in the client
+          3. using variables that only exist in browsers, like window or LocalStorage. 
+          4. incorrect use of side effects
+          5. etc.
 
 New Way(client-side rendering)(React, etc.):
   1. HTML is rendered on the client using Javascript
