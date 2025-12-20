@@ -1036,4 +1036,39 @@ How to use:
 /* Next.js
 Back Story:
   is it a blend of server side rendering and client side rendering to obtain the bext of both world. Frameworks like Next.js and Remix are improvements from old php and WordPress, and also using the modern client side rendering methods like React, Angular, Svelte, Vue
+What is it?
+  it is a meta-framework that is build on top of React
+    Meta: if we consider React as a framework, Next.js is just building on top of it
+  It adds a set of conventions and good practices that all real world apps needs, like routing, data fetching, etc.
+  It allows as to build complex full-stack web apps and sites
+Benefit:
+  even though with a framework, it limits us to the the options of the creator of Next.js, Vercel. But this allows developer work better in teams and not worry about different practices. 
+  This framework also allows us to use cutting-edge React features that normal it is really hard to use without an framework
+Key Features:
+  1. Server Side Rendering:
+    we can select for each route wether we want it to be dymanic or static
+  2. Buildin routers
+    it comes with 2 routers out of the box
+    to create a new route we don't need to write a single line of code, we just need to create a new folder and follow the folders structure of Next.js
+    Two Routers:
+      1. APP Router(Modern):
+        1. introduced in Next.js 13.4(2023) and now is the recommend way to start a project
+          this implements React's full-stack architechture
+            Server Components, Server Actions, Streaming, they only work with APP Router
+        2. it allows are very complicated routing patterns, like paralell routing
+        3. Server components makes the developer Experience and User experience much better 
+        4. BUT the aggressive caching make things very complicated and confusing and often do things we don't want(maybe changed in the future)
+        5. the learn curve is steep but at least it is mostly React features
+      2. PAGES Router(LEGACY):
+        1. the router in the very beginning since version 1 in 2016
+          it is simple and easy to learn but it have its drawbacks, this is why the APP Router is implemented. 
+          this is still supported though
+        2. Drawbacks:
+          Simple things like layouts are confusing to implement(APP Router makes it very easy)
+          Data fetching have to be done through Next.js specific APIs (APP Router can just use fetch())
+  3. Data fetching and mutation in the server
+    it also allow us to be able to create Server Components and doing mutation in Server Actions. 
+    this is a fundamental change from React, which have everything on the client
+  4. Optimization
+    it provides a host of optimizations for webs or apps when optimizations are super important. 
 */
