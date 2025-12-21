@@ -1076,10 +1076,11 @@ How to Use:
   Routes:
     we just need to create a folder and by convention have a page.js file to export a react component
   we just need a layout.js in the app folder to create connections between pages and the main layout
+  in the app folder, the loading.js is a spinner that will apply to all pages in the app folder, no matter all nested it is
 React Server Component(this is purely React):
   NOTE:
     React Server Components(RSC) are the name of the new React paradigm
-    Server Components: 
+    Server Components(page.js always needs to be server components): 
       they are incharge of the UI that is a function of data changing over time
       the components that only render in the server and have no interactivity what so ever. 
       they don't need any javascript in the bundle to work at all. 
@@ -1093,6 +1094,14 @@ React Server Component(this is purely React):
       6. we can import both client and server components
       7. we can also render both client and server components
       8. rerenders everytime that the URL changes and might refetch the data too. 
+      EXAMPLES:
+        In a async component
+        when the page is loaded, it takes sometime to fetch the data in the server then send to the client
+        but once it is done then it will be cached in the browser
+          const res = await fetch("https://jsonplaceholder.typicode.com/users");
+          const data = await res.json();
+        since this is a server component, so the console.log result show up in the terminal and not in the console of the website
+          console.log(data);
     Client Components:
       They are incharge of the UI that is a function of state changing over time
       the components that is client side to make the app interactive
