@@ -1183,4 +1183,35 @@ React Server Component(this is purely React):
     3. we need to make more decision about wether to use server or client component or where to fetch the data(server or client)
     4. if we are making a mobile app and not just on the web, we need to make an API even if we don't need it for data fetching
     5. A LOT OF PEOPLE DON'T LIKE THIS: it only work in a framework, From Vite App and implement RSC ourselves are not viable, it is just too complex. 
+  How does it work?
+    "Traditional React":
+      1. there are components
+      2. when we compose the User Interface(UI), we end up with a tree of components instances(the Component Tree)
+      3. Then we render the tree
+        Render in React:
+          1. Call each of the component function that matches the components instance. 
+          2. These function will return a Javascript object that contain the information needed to the create the DOM element. 
+          3. all these objects then form a React Element Tree(the Virtual DOM)
+          4. this Virtual DOM will then be commited to the real DOM and form the web page we can see. 
+    RSC: when there are a tree that have both server and client components
+      NOTE: the server and client mentioned is really the React Server and React Client, which is different from the not server and client
+      1. the server component instances are rendered on the server, which result in a React Element matching each instance. 
+        1. this process will result in all the code for the server component instances to disapear, since the React Element is a Javascript object that contains the information needed to DOM elements. 
+        2. this is also the reason why we can't have state or hooks in server components, all the code will disappear and since the object need to be serialization to be able to send to the client function and classes will be not possible to store. 
+      2. the client component instances will not be rendered on the server but there will be placeholders create for them. 
+        These placeholders, or "Holes", will contain the necessary information that needed to render the client components. 
+          1. the serialized props that need to passed from the server component to the client component
+          2. the URL that will lead to the script that contain the code needed to render the client component
+            the URL is powered by the bundler in the framework, without a bundle it is near impossible for us to do this with normal React, which is why that Server Components only work with a framework
+      3. RSC Payload is the name of this tree that contains rendered server components and "Holes" for client components
+        1. it is a json like structure that the React Team developped to make it easier to stream from the server to the client
+      4. this Payload is what will be send to the client, and the "Holes" will be patched with React Elements of the client components when they are rendered on the client
+      5. this result in the complete Virtual DOM
+      NOTES:
+        Why do we need the RSC Payload and not just send html over?
+          1. React want UI to be a function of data changing over time, so the Payload will act as the data and we don't want the UI to be based on HTML
+          2. When the Server Components are re-rendered, we can just update the Payload then pass it to the client and incoperate into the existing Virtual DOM
+          3. this can also preserve the UI state, BUT if we only pass HTML around, the state will be lost and cause a pretty hectic User Experience. 
+        These steps of rendering don't always wait for one another, they can happen simultaneously. 
+        UI is more like a function of data changing over time, then a function of state changing over time, like UI = f(data)(state)
 */
