@@ -1057,7 +1057,7 @@ Key Features:
             Server Components, Server Actions, Streaming, they only work with APP Router
         2. it allows are very complicated routing patterns, like paralell routing
         3. Server components makes the developer Experience and User experience much better 
-        4. BUT the aggressive caching make things very complicated and confusing and often do things we don't want(maybe changed in the future)
+        4. BUT the aggressive caching make things very complicated and confusing and often do things we don't want(version 14)(maybe changed in the future, maybe in 16)
         5. the learn curve is steep but at least it is mostly React features
       2. PAGES Router(LEGACY):
         1. the router in the very beginning since version 1 in 2016
@@ -1071,4 +1071,107 @@ Key Features:
     this is a fundamental change from React, which have everything on the client
   4. Optimization
     it provides a host of optimizations for webs or apps when optimizations are super important. 
+How to Use:
+  create a new project npx create-next-app@latest [name]
+  Routes:
+    we just need to create a folder and by convention have a page.js file to export a react component
+  we just need a layout.js in the app folder to create connections between pages and the main layout
+React Server Component(this is purely React):
+  NOTE:
+    React Server Components(RSC) are the name of the new React paradigm
+    Server Components: 
+      they are incharge of the UI that is a function of data changing over time
+      the components that only render in the server and have no interactivity what so ever. 
+      they don't need any javascript in the bundle to work at all. 
+      This also allows us to build the back-end of the app with React. 
+      1. this is the default component in the RSC module
+      2. can't be stateful and can't have any hook what so ever
+      3. can't life state up, since it can't have state in the first place
+      4. we can pass props between server components and even between server and client component, which is a very important way to pass data between server and client components. 
+        BUT the props that pass between server and client components must be serializable, which mean they need to be easily convert to a format that can be easily send from the server to the client. This makes props like function and class not possible, they are not serializable. 
+      5. we can just do async/await in the top level code of a server component(this won't work for client components), then pass it to the client components with props
+      6. we can import both client and server components
+      7. we can also render both client and server components
+      8. rerenders everytime that the URL changes and might refetch the data too. 
+    Client Components:
+      They are incharge of the UI that is a function of state changing over time
+      the components that is client side to make the app interactive
+      1. we need to opt in with "use client" at the top of the module
+      2. we can have states and hooks, since these are the components that are interactive
+      3. lifting state up
+      4. we can pass Props around. 
+      5. we can still use libraries, like React Query, to fetch data. it is still an option even if we got server components
+      6. we can only important client components, since once the server-client boundry is crossed, there are no way back. 
+      7. but we can render both server and client components, as long as the server components are passed as props
+      8. these components will rerender when their own or their parent states changes
+    IMPORTANT:
+      RSC is not active in a regular React Apps, like Vite apps. RSC need to be implemented by a framework for it to work, like the App Router of Next.js. Only when a framework adopt these features, then we can be able to use them. 
+      1. Server Components are the default in apps that uses RSC architecture, like Next.js
+      2. if we want to use Client Components, we need to specify a component is a client component with "use client"
+        the child components of Client Components don't need "use client" again.
+          The reason for this is because "use client" don't mark the a Client Component, it creates a Server-Client Boundry and form a Client sub tree for the current component and all of its child components. 
+    Example for the difference check the images
+  Why:
+    In a React Application, let's think the UI is a function of state(fetched data is here too) changing over time.
+      100% client side:
+        the state keeps changing and the app keep rerendering to show different part of the UI and Layout 
+        Pros:
+          1. it is very interactive
+          2. everything is in components
+        Cons:
+          1. it require a lot of JS to be downloaded
+          2. client-server data waterfall
+            this is when multiple components need to fetch data one after another on the same page, whcih means the components are depended on the data fetch by another component. This is a huge problem for 100% client-side application
+      100% server side(like the old php):
+        instead of states changing over time, this is data changing over time
+        Cons:
+          there are no component what so ever
+        Pros:
+          1. it is very fast at fetching all data
+          2. the code are really close to the data all in the server, even if they are in different servers, we don't need to create APIs to connect the client to the server
+          3. there is no need to send any Javascript at all
+      What if we can take the best of both world?
+      What if the UI is the change of state and data over time?
+      What if there is a gradient and everything is not just client or server?
+      What if we want the app it be interactive and close to the data with no javascript shipped?
+        the answer is a completely new React paradigm: React Server Component(RSC)
+  What is it?
+    1. it is a full-stack architechture for React apps
+    2. the component tree are extending up to the server and bridging the cap between server and client to incorperate the server as an integral part of the component tree. 
+    3. the way that the gap is bridged is by using server components
+    4. this allows us to write frontend and backend code next to each other in a way that is natural like a regular React app. 
+  Compare(this is not how they works, just a simple model):
+    "Traditional" React:
+      1. there are components
+      2. they will render a view
+      3. when user interact with the view the states changes
+      4. the components rerenders when the states changes
+      5. this generate a new view
+      6. the components can also fetch data
+      7. when the data changes -> (4)(5)
+    React with RSC:
+      1. there are Client Components
+      2. they will render a view
+      3. when user interact with the view the states changes
+      4. the Client Components rerenders when the states changes
+      5. this generate a new view
+    ->6. there are Server Components now
+      7. they can help with render the view
+      8. they will also fetch data
+      9. the data can be pass to Client Components in the form of props, which act as a bridge, or be used in rendering the view
+      10. when the user's interaction changes the URL
+      11. the Server Components will rerender
+      12. then more data might be fetched and the props and view will also be affected
+  Pros: 
+    1. this allows us to be able to write both the frontend and backend with only components and some Server Actions as mutations
+    2. This allows as to write full-stack application with React Components and use one codebase for front and back end
+    3. we don't need to worry about creating APIs when fetching data, since Server Components can just access the server. This also eliminate the worry about API keys when accessing API. 
+    4. this also elimiate the client-server waterfall by fetching all the data at once then pass, or Stream, them to the client(not specific components). 
+    5. "disapearing code": they are just server components, since they don't need to add any javascript to the bundle, so that can import huge libraries without impacting performance. i.e. they are "for free"
+  Cons:
+    1. makes React more complex and more thing to understand
+    2. Things like Context API don't work
+    3. we need to make more decision about wether to use server or client component or where to fetch the data(server or client)
+    4. if we are making a mobile app and not just on the web, we need to make an API even if we don't need it for data fetching
+    5. A LOT OF PEOPLE DON'T LIKE THIS: it only work in a framework, From Vite App and implement RSC ourselves are not viable, it is just too complex. 
 */
