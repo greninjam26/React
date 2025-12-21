@@ -1,5 +1,5 @@
 /* History
-Old Websites(server-side rendering)(php, WordPress, Next.js):
+Old Websites(server-side rendering, more in Next.js section)(php, WordPress, Next.js):
   before 2010, all the website are all server-side rendering
   this means all the HTML, CSS, and javascript codes are all loaded on the server
   because there are no a lot of code in javascript, so it works
@@ -1214,4 +1214,22 @@ React Server Component(this is purely React):
           3. this can also preserve the UI state, BUT if we only pass HTML around, the state will be lost and cause a pretty hectic User Experience. 
         These steps of rendering don't always wait for one another, they can happen simultaneously. 
         UI is more like a function of data changing over time, then a function of state changing over time, like UI = f(data)(state)
+    SSR(dynamic, HTML generated at runtime):
+      1. the server recieve a request
+      2. the Component tree is rendered to the virtual DOM as HTML ready to be shipped to the client
+      3. the React bundle, which contain React and the component tree will also need to be send to the client's browser, with streaming this bundle can be many chunks to send over seperatly whenever the client needs them. (When combined with RSC, these are the RSC Payload)
+      4. Then the HTML will be hydrated
+      5. then we get an interactive react app
+    NOTE:
+      RSC and SSR and completely different thing, RSC is not here to replace SSR, BUT it is here to complement it and make it better. 
+      we need a framework, like Next.js, to combine them and make them work together
+      When RSC and SSR work together, both Server and Client components are render on the server then send to the client. 
+      Why would Client Components be rendered on the Server?
+      Isn't the server only for Server Components?
+        the SERVER in RSC and SSR are not the same!!!!(well, they can be the same, like after the first time SSR is executed and the React App is just reacting to client's change)
+        RSC: it is React server and client, they are just 2 different part of this architecture
+          Technically, we don't need a web server for RSC, the React server can just be the "developer's computer". we can only build the Server Components once at built time. 
+          Similarly, React Client don't need to be a browser
+        SSR: it is web server and client
+        SO in reality the React server and client are in the web server
 */
