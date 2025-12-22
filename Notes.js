@@ -1077,6 +1077,11 @@ How to Use:
     we just need to create a folder and by convention have a page.js file to export a react component
   we just need a layout.js in the app folder to create connections between pages and the main layout
   in the app folder, the loading.js is a spinner that will apply to all pages in the app folder, no matter all nested it is. This is uses the process of Streaming. 
+  we can just have error.js in the app folder to handle error display, BUT the component have to be Client Component, stuff in callback function won't be catched, only rendering errors. 
+    IMPORTANT: errors in the root layout won't be catched, we can do a Global Layout to deal with it somehow
+  For not found errors, we create a file call not-found.js
+    we can also manually call the notFound function to trigger not-found.js
+
   just have icon.[] file will make it the icon for the website
   metadata in the layout and be overwriten by the ones in page, we can also use generateMetadata() to fetch other information for the metadata. 
   we don't need to manually instead google font or any font we want, just by import it. 
