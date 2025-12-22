@@ -1077,6 +1077,13 @@ How to Use:
     we just need to create a folder and by convention have a page.js file to export a react component
   we just need a layout.js in the app folder to create connections between pages and the main layout
   in the app folder, the loading.js is a spinner that will apply to all pages in the app folder, no matter all nested it is
+  just have icon.[] file will make it the icon for the website
+  metadata in the layout and be overwriten by the ones in page
+  we don't need to manually instead google font or any font we want, just by import it. 
+  <Image/> will auto optimize images(check Logo.js in the Wild Oasis website for more info)
+    1. server then at the correct size and file size
+    2. preventing layout shifts by forcing the image to have a set width and height
+    3. lazy load the images
 React Server Component(this is purely React):
   NOTE:
     React Server Components(RSC) are the name of the new React paradigm
