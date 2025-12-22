@@ -1296,6 +1296,19 @@ Rendering in Next.js:
   3. the renders are split by routes, we can customize each route
   4. static or dynamic rendering is not lock to the entire app, we can do some route static and otehrs dynamic
   5. there is also another way of rendering that combine static and dynamic, which is called Partial Pre-Rendering
+    Partial Pre-Rendering(still in experimental stage for Next.js):
+      What happen if only the user in the navigation is dynamic and the rest of the page can be static?
+        before the entire page will be dynamic because the top level navigation need to be dynamic
+      SO this is just combining the best of both world between 100% static and dynamic rendering. 
+      How it work?
+        1. shell: a static version of the entire page is generated but also leaves holes for the dynamic components, is server to the client from CDN. 
+        2. the rendered dynamic content of the page streams in as it is rendered on the server. 
+      SO this makes the pages deliver much faster even if there are smaller dynamic part to the page. 
+      How to use?
+        we need to turn it on in the config file
+        The dynamic parts of the route need to be place in a suspense boundary
+        no need extra APIs
+        the REASON for Suspense is that it can block off the dynamic parts from the rest of the route 
   Static Rendering:
     1. the HTML is generated at built time, which mean it is triggered by the developper
     Incremental Static Rengeneration(ISR):
