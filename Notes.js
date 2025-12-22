@@ -1084,6 +1084,8 @@ How to Use:
     1. server then at the correct size and file size
     2. preventing layout shifts by forcing the image to have a set width and height
     3. lazy load the images
+  in the .env.local file we can store variables we can access using Next.js with process.env.[variable name]
+    for the variable we can access in the server we need NEXT_PUBLIC_ as the prefix of the variable name
 React Server Component(this is purely React):
   NOTE:
     React Server Components(RSC) are the name of the new React paradigm
