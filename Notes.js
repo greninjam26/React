@@ -1096,6 +1096,9 @@ How to Use:
     Instead of a create a folder for each person to create a route
     we create a folder with the name "[[the id]]", i.e. [the id] with a [] outside of it
     the page in this folder get access to a prop, named params, which contain that value of [the id]
+    we can stop these pages from becoming dynamic routes by using a function called generateStaticParams in the page.js. 
+    this way we can get all the possible ids and return an array of all possible ids in this formate: 
+      { [id name]: String([the id]) }
 
 React Server Component(this is purely React):
   NOTE:
@@ -1305,6 +1308,11 @@ Rendering in Next.js:
       CDN: this is network of servers located around the world that will cache and deliver a website's static content to the client with the server that is physically closest to the client. 
     NOTE:
       if the entire site have no any user personalized data, the entire site can be static, which will be exported as a Static Site in a process of Static Site Generation(SSG)
+        we can export a Next.js project as a Static Site by adding output:"export" in nextConfig in next.config.mjs. 
+        then just do the normal npm run build
+        BUT if there are any dynamic routes, errors happen
+        BENEFIT: if it is outputed as a Static Site, we don't have to use Vercel or worry about things would get complicated with other site, the folder outputed works anywhere. 
+        BUT images with <Image/> from next do have problems without server to optimize it though. 
   Dynamic Rendering:
     1. HTML is generated at request time, which mean whenever it is requested
     2. this are for pages that data changes often or personalized to the user
