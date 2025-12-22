@@ -1241,4 +1241,39 @@ React Server Component(this is purely React):
           Similarly, React Client don't need to be a browser
         SSR: it is web server and client
         SO in reality the React server and client are in the web server
+Suspense:
+  What is it?
+    it is a build-in React Component that will catch/isolate component or subtrees, which are doing some async actions, that are not ready to be rendered yet
+    it is like the catch in the try/catch block but instead of catching errors, it catches components that are not ready to be rendered
+  What can cause a component to be suspending in the first place?
+    1. fetching data with libraries that support suspense, like React Query, Next.js
+    2. loading code with React's lazy loading
+  How to use?
+    we just wrap the components(doing async work) that needs it in a suspense component
+  How it works?
+    1. suspending components are found during rendering
+    2. move back to the closeest suspense parent, which is also known as the "Suspense Boundary", it is a boundary since it seperates the suspending sub tree from the rest of the app
+    3. it discard the entire sub tree no matter it is rendered or not and display a fallback component, ususally a spinner
+    4. when the async work is done, the sub tree will be rendered again
+    NOTE: just doing async/await will not trigger suspense and manually triggering it is extremelly complicated. This is why we leave it to libraries
+    FIBRE TREE is the thing that allows suspense to be possible in the first place
+  In fibre tree:
+    there are a build-in component, Activity, that will not show up in the component tree. 
+    it is between the suspense component and the suspensing sub tree
+    at the start, Activity is set to "visible", so that the Spinner attached to Activity will not be displaied and the sub tree can be seen
+    when the sub tree is suspending, the Activity is set to "hidden", when the Sinner will replace the sub tree
+    When the sub tree is finished, the Activity is set back to "visible" and the new sub tree is shown. 
+    If the sub tree suspend again, this process will repeat. 
+    NOTE:
+      since the components are in the fibre tree and just hidden
+      all states are preserved through this process
+    IMPORTANT:
+      this process will not be triggered if the Suspense trigger is wrapped in a transition. 
+      BUT all page navigations in Next.js are wrapped in a transition...
+      SO we need to pass in a key props to reset the suspense buondary
+  How does Suspense know wether a child component is suspending?
+  usually child component don't talk to the parent component...
+    on a high level:
+      the child component throws a Promise to notify the closest Suspense Component. 
+      it is quit complicate, which is the reason why we need libraries to deal with it
 */
