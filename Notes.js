@@ -1076,9 +1076,9 @@ How to Use:
   Routes:
     we just need to create a folder and by convention have a page.js file to export a react component
   we just need a layout.js in the app folder to create connections between pages and the main layout
-  in the app folder, the loading.js is a spinner that will apply to all pages in the app folder, no matter all nested it is
+  in the app folder, the loading.js is a spinner that will apply to all pages in the app folder, no matter all nested it is. This is uses the process of Streaming. 
   just have icon.[] file will make it the icon for the website
-  metadata in the layout and be overwriten by the ones in page
+  metadata in the layout and be overwriten by the ones in page, we can also use generateMetadata() to fetch other information for the metadata. 
   we don't need to manually instead google font or any font we want, just by import it. 
   <Image/> will auto optimize images(check Logo.js in the Wild Oasis website for more info)
     1. server then at the correct size and file size
@@ -1086,6 +1086,12 @@ How to Use:
     3. lazy load the images
   in the .env.local file we can store variables we can access using Next.js with process.env.[variable name]
     for the variable we can access in the server we need NEXT_PUBLIC_ as the prefix of the variable name
+  Dynamic Routes:
+    there are Routes that depend on a variable that have a lot of varities, like a page basic on a person's id. 
+    Instead of a create a folder for each person to create a route
+    we create a folder with the name "[[the id]]", i.e. [the id] with a [] outside of it
+    the page in this folder get access to a prop, named params, which contain that value of [the id]
+
 React Server Component(this is purely React):
   NOTE:
     React Server Components(RSC) are the name of the new React paradigm
