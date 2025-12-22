@@ -67,7 +67,7 @@ New Way(client-side rendering)(React, etc.):
     4. then the app will display a spinner 
     NOTE: First paint(FCP): this is when the app first display something
     5. while the data is being fetched from the server, like an API endpoint. This server can be different from where the page came from. 
-    6. when the data arrives, the app will rerender itself with the new data. 
+    6. when the data arrives, the app will re-render itself with the new data. 
     NOTE: This is where we can say we had the initial page load, metric of Largest Contentful Paint(LCP) or content paint for short. 
 
   
@@ -492,7 +492,7 @@ Library:
         type pf state(base on domain): Remote or UI
           Remote State:
             all the application data that is loaded the remote servers(use an API)
-            usually asynchronous and need to refetched and updated
+            usually asynchronous and need to re-fetched and updated
           UI State:
             everything else
             They are usually synchronous and usually stored in the application and will not interact with anything else
@@ -1007,8 +1007,8 @@ How to use:
     const queryClient = new QueryClient({
       defaultOptions: {
         queries: {
-        // this is the time that it will take for the data to go stale, then React Query will automaticly refetch the data when we leave and re-enter the tab
-        // with it at 0, this means data will always be automaticly refetch when we switch tabs. 
+        // this is the time that it will take for the data to go stale, then React Query will automaticly re-fetch the data when we leave and re-enter the tab
+        // with it at 0, this means data will always be automaticly re-fetch when we switch tabs. 
           staleTime: 0,
         },
       },
@@ -1113,7 +1113,7 @@ React Server Component(this is purely React):
       5. we can just do async/await in the top level code of a server component(this won't work for client components), then pass it to the client components with props
       6. we can import both client and server components
       7. we can also render both client and server components
-      8. rerenders everytime that the URL changes and might refetch the data too. 
+      8. re-renders everytime that the URL changes and might re-fetch the data too. 
       EXAMPLES:
         In a async component
         when the page is loaded, it takes sometime to fetch the data in the server then send to the client
@@ -1132,7 +1132,7 @@ React Server Component(this is purely React):
       5. we can still use libraries, like React Query, to fetch data. it is still an option even if we got server components
       6. we can only important client components, since once the server-client boundry is crossed, there are no way back. 
       7. but we can render both server and client components, as long as the server components are passed as props
-      8. these components will rerender when their own or their parent states changes
+      8. these components will re-render when their own or their parent states changes
     IMPORTANT:
       RSC is not active in a regular React Apps, like Vite apps. RSC need to be implemented by a framework for it to work, like the App Router of Next.js. Only when a framework adopt these features, then we can be able to use them. 
       1. Server Components are the default in apps that uses RSC architecture, like Next.js
@@ -1143,7 +1143,7 @@ React Server Component(this is purely React):
   Why:
     In a React Application, let's think the UI is a function of state(fetched data is here too) changing over time.
       100% client side:
-        the state keeps changing and the app keep rerendering to show different part of the UI and Layout 
+        the state keeps changing and the app keep re-rendering to show different part of the UI and Layout 
         Pros:
           1. it is very interactive
           2. everything is in components
@@ -1174,7 +1174,7 @@ React Server Component(this is purely React):
       1. there are components
       2. they will render a view
       3. when user interact with the view the states changes
-      4. the components rerenders when the states changes
+      4. the components re-renders when the states changes
       5. this generate a new view
       6. the components can also fetch data
       7. when the data changes -> (4)(5)
@@ -1182,14 +1182,14 @@ React Server Component(this is purely React):
       1. there are Client Components
       2. they will render a view
       3. when user interact with the view the states changes
-      4. the Client Components rerenders when the states changes
+      4. the Client Components re-renders when the states changes
       5. this generate a new view
     ->6. there are Server Components now
       7. they can help with render the view
       8. they will also fetch data
       9. the data can be pass to Client Components in the form of props, which act as a bridge, or be used in rendering the view
       10. when the user's interaction changes the URL
-      11. the Server Components will rerender
+      11. the Server Components will re-render
       12. then more data might be fetched and the props and view will also be affected
   Pros: 
     1. this allows us to be able to write both the frontend and backend with only components and some Server Actions as mutations
@@ -1287,4 +1287,50 @@ Suspense:
     on a high level:
       the child component throws a Promise to notify the closest Suspense Component. 
       it is quit complicate, which is the reason why we need libraries to deal with it
+Rendering in Next.js:
+  1. the rendering is done by React with RSC and SSR
+  2. on the initial render both the Server and Client Components are rendered in the server
+  3. the renders are split by routes, we can customize each route
+  4. static or dynamic rendering is not lock to the entire app, we can do some route static and otehrs dynamic
+  5. there is also another way of rendering that combine static and dynamic, which is called Partial Pre-Rendering
+  Static Rendering:
+    1. the HTML is generated at built time, which mean it is triggered by the developper
+    Incremental Static Rengeneration(ISR):
+      which just a way of saying that a route can be periodically re-rendered in the background. 
+      By re-fetching the data from time to time, after a set interval has passed. 
+    2. This is useful when the data don't change often and the page doesn't depend on the user
+    3. all the routes in Next.js are default staticly rendered
+      the static pages are much faster than dynamic ones, since they don't need to be regenerated everytime it is requested
+    4. when we deploy Next.js to Vercel all the static routes will be automatically hosted on a Content Delivery Network(CDN)
+      CDN: this is network of servers located around the world that will cache and deliver a website's static content to the client with the server that is physically closest to the client. 
+    NOTE:
+      if the entire site have no any user personalized data, the entire site can be static, which will be exported as a Static Site in a process of Static Site Generation(SSG)
+  Dynamic Rendering:
+    1. HTML is generated at request time, which mean whenever it is requested
+    2. this are for pages that data changes often or personalized to the user
+      or the page depend on the request, like the page URL and stuff
+    3. But there are certain conditions will make Next.js to switch a route to dynamic rendering
+    4. all the Dynamic Routes will become a serverless function
+      Serverless Computing Model:
+        this allows us to run application code, usually backend code, without managing the server ourselves.
+        we can just run a single function, Serverless Functions, on cloud providers, like Vercel. 
+        the server is only initialzed and running for the duration that the serverless function is running. 
+        SO the backend is not like the usual one big Node.js server. 
+        Vercel will handle everything, and if one function need more resources, it will be allocated to it to help. 
+      The "edge": "as close as possible to the user"
+        CDN is part of an "edge" network
+        Serverless "Edge" Computing(like a CDN for running code):
+          this is when the Serverless Functions don't run on a big central server but on a network that is distributed throughout the world, as closest to the user as possible to improve the speed.
+          IMPORTANT: we can select certain routes to be run like this when we deploy the project to Vercel 
+    NOTE:
+      we don't get to choose when a route is switched to Dynamic, Next.js handle the entire process
+        1. if a page have a dynamic segment, like the page uses the params props
+        2. if the page component uses searchParams to read the URL for some information
+        3. if any Server Components in the route uses header() or cookies()
+        4. if an uncached data request is made by any Server Component of the route
+        ways to force dynamic route:
+          1. export const dynamic = "force-dynamic"; in page.js
+          2. export const revalidate = 0; in page.js
+          3. { cache: "no-store" } is being added to any fetch request of a Server Component in the route
+          4. noStore() is used in any Server Components of the route. 
 */
