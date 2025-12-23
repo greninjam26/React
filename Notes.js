@@ -1146,6 +1146,36 @@ React Server Component(this is purely React):
         the child components of Client Components don't need "use client" again.
           The reason for this is because "use client" don't mark the a Client Component, it creates a Server-Client Boundry and form a Client sub tree for the current component and all of its child components. 
     Example for the difference check the images
+  The Server Client Boundary:
+    Traditional React:
+      The Server is like a Node.js API run in the back
+      The Client is where the front end application is ran
+      1. communication happen with API
+      2. data is passed in the format of JSON
+      3. onces the JSON arrive from the backend, the frontend take over to render the data and the backend is no longer needed
+      4. usually though backend is still needed so that the frontend and make mutations to change the data
+    Next.js with RSC and SA:
+      The Front-End: the Client Components
+      The Back-End: the Server Components
+      1. the Front-End and Back-End are not really seperated anymore, there is no clear seperation
+      2. "Knitting": this is a pattern that the Server and Client codes are interweaved together
+      3. this allows us to build true full0stack application all in one codebase
+      4. This makes it so that we don't need to build APIs to communicate between front-end and back-end anymore. 
+      5. for sending data, we can just fetch and render the data in the server component or pass it onto a client component
+      6. instead of mutations we have Server Actions to change the data in the server components from the client components
+    NOTE(check the images for detailed diagram):
+      Rendering: 
+        1. the Component Tree is showing what components each component will be rendering. 
+        2. Client Components can render Server Components, as long as the Server Component is passed in as props
+      Importing(this is where the real Client and Server Boundary is at): 
+        1. there is a Dependency Tree that shows what components each components needs to import
+        2. BUT Client Component can only import Client Components
+      IMPORTANT:
+        all the components are default Server Components
+        so when they are called it will result in a Server Component Instance
+        BUT if they are called by a Client Component
+        it will result in a Client Component Instance
+        SO in the trees, there can be Server Component Instance and Client Component Instance versions of the same component. 
   Why:
     In a React Application, let's think the UI is a function of state(fetched data is here too) changing over time.
       100% client side:
