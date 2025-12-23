@@ -1100,6 +1100,9 @@ How to Use:
     this way we can get all the possible ids and return an array of all possible ids in this formate: 
       { [id name]: String([the id]) }
 
+  We can mimick the production envirment to test out caching with npm run "next build && next start"
+    it don't live update the changes though, we need to restart the production server
+
 React Server Component(this is purely React):
   NOTE:
     React Server Components(RSC) are the name of the new React paradigm
@@ -1363,7 +1366,9 @@ Caching:
     5. this makes Next.js apps more performant, less fetching and computing, and saves costs, sometime fetching data might cost money. 
     6. Caching is always ON by default, which often lead to unexpected behaviours, like display stale data, and some caching can't even be turn OFF... This makes the caching very annoying to work with sometimes. 
   Caching Mechanisms:
-    NOTE: This is what will happened in production, there are basicly not caching in development
+    NOTE: 
+      1. This is what will happened in production, there are basicly not caching in development
+      2. we can put a variable or equation as the value of revalidate, it have to be a fix value
     Request Memoization:
       Where: Server
       What to cache?
