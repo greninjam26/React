@@ -1354,4 +1354,90 @@ Rendering in Next.js:
           2. export const revalidate = 0; in page.js
           3. { cache: "no-store" } is being added to any fetch request of a Server Component in the route
           4. noStore() is used in any Server Components of the route. 
+Caching:
+  What is it?
+    1. it is just storing the fetched or computed data in a temporary location so it can be accessed whenever it is needed again. 
+    2. this allows the app to not fetch or compute the same data over and over again
+    3. Next.js have very aggressive caching, which caches everything that can be cached
+    4. Next.js also provides APIs for cache revalidation, which will remove data from the cache and update it with fresh data, which just got fetched or computed
+    5. this makes Next.js apps more performant, less fetching and computing, and saves costs, sometime fetching data might cost money. 
+    6. Caching is always ON by default, which often lead to unexpected behaviours, like display stale data, and some caching can't even be turn OFF... This makes the caching very annoying to work with sometimes. 
+  Caching Mechanisms:
+    NOTE: This is what will happened in production, there are basicly not caching in development
+    Request Memoization:
+      Where: Server
+      What to cache?
+        this caches only for fetch(), and only those in components. Those fetch() in handlers or server actions will not be affected
+      How long will the data be kept?
+        this is only kept for this one page request, and it is for each user. 
+      Benefit?
+        we can have the same fetch(URL, option) multiple times throughout the page and they will only result in one fetch request to the server. 
+        the rest of the request will just read off the cache. 
+      How to revalidate?
+        we can't, the data don't stay long enough for it.
+      How to Opt Out?
+        AbortController
+        usually don't need it to though
+    Data Cache:
+      Where: Server
+      What to cache?
+        this one caches the data fetched in a route or a single fetch requests
+        it is highly configurable and it is also the most confusing
+      How long will the data be kept?
+        Indefinitly...
+        this data can even survive re-deployment of the application
+      Benefit?
+        not matter how many people and how many requests throughout the world, only one fetch request will be send to the server and everyone will be able to get the data. 
+        this are the data that go into making a static page, i.e. the data don't change often and it provide static pages all the information it needs to be generated. 
+        This is also what powers ISR when it revalidates. 
+        When revalidation is needed the data is fetched again and the static page rely on those data will be regenerated
+      How to revalidate?
+        we can after a certain amount of time and revalidate all the data in the route with
+          export const revalidate = <time>; in page.js
+        we can after a certain amount of time and revalidate one data request with
+          fetch("", { next: { revalidate: <time> } });
+        we can also On-demand and manual revalidate with
+          revalidatePath or revalidateTag
+      How to Opt Out?
+        NOTE: these will also turn the page dynamic without Partial Pre-Rendering
+        we can Opt Out the entire page by setting the revalidate time to 0 with
+          export const revalidate = 0; in page.js
+        we can Opt Out by turning this page to dynamic, since this cache is only for static rendered pages with
+          export const dynamic = "force-dynamic"; in page.js
+        we can Opt Out for single fetch request with
+          fetch("", { cache: "no-store" })
+        ...for individual server component with
+          noStore(); in the component
+    Full Route Cache:
+      Where: Server
+      What to cache?
+        this one caches all the static pages, with all of thier HTML and RSC Payload. 
+      How long will the data be kept?
+        basicly Indefinitly....
+        it will be revalidated when the Data Cache is revalidated and new static pages are created
+        BUT it does not survive re-deployment like the Data Cache. 
+      Benefit?
+        this is what allows static page and apps to work the way they do
+      NOTE: Revalidate and Opt Out from Data Cache is also applied to this one, since this one depend on the Data Cache
+    Router Cache:
+      Where: Client, in the browser
+      What to cache?
+        all the pre-fetched pages and the pages that the user went through, Static and Dynamic
+      How long will the data be kept?
+        Dynamic pages will be there for 30 seconds(Next.js 14) (Next.js 15: default Prefetching have no Caching, Full Prefetching is 5 minutes)
+        Static pages will be there for 5 minutes (always 5 minutes no matter what)
+        If the user don't do a hard reload
+      Benefit?
+        it allows the user to experience a SPA-like navigation throughout the application
+        BUT this can cause the user to have stale data in cache with not way to remove them. 
+      How to revalidate?
+        use revalidatePath or revalidateTag in Server Action
+        we can also force a reload with 
+          router.refresh
+        or do 
+          cookies.set or cookies.delete in Server Action
+      How to Opt Out?
+        We can't...
+        Next.js 15 have some Opt Out by default?
+
 */
