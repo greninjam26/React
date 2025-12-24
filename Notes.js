@@ -1485,4 +1485,27 @@ Caching:
         We can't...
         Next.js 15 have some Opt Out by default?
 
+Middleware:
+  What is it?
+    in english it is something sit between tow things
+    In Next.js it is between the Request and Response
+    In Other Word:
+      we can run code after teh Request BUT for the Response is send back
+  How it works?
+    middleware will run before every route inthe project
+    we can use matcher to specify the path though
+    We can think it as a chunk of code in every route, BUT it is organized in one place that run before each route
+    We need one and only one middleware.js file and it have to be in the root folder(NOT the app folder)
+    IMPORTANT: Middleware have to produce a Responds
+      1. Redirect and Rewrite the Responds to a route
+      2. Send a JSON Reponse straight to the client(this one completely ignore the path)
+  What is it use for?
+    it is mostly used to read and set cookies and headers
+    this allows us to implement:
+      1. Authetication and Authorization
+      2. Server-side analytics
+      3. Redirect based on Geolocation
+      4. A/B tesing
+      5. etc.
+        
 */
