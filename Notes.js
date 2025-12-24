@@ -1141,7 +1141,7 @@ React Server Component(this is purely React):
     Client Components:
       They are incharge of the UI that is a function of state changing over time
       the components that is client side to make the app interactive
-      1. we need to opt in with "use client" at the top of the module
+      1. we need to opt in with "use client" directive at the top of the module
       2. we can have states and hooks, since these are the components that are interactive
       3. lifting state up
       4. we can pass Props around. 
@@ -1152,10 +1152,42 @@ React Server Component(this is purely React):
     IMPORTANT:
       RSC is not active in a regular React Apps, like Vite apps. RSC need to be implemented by a framework for it to work, like the App Router of Next.js. Only when a framework adopt these features, then we can be able to use them. 
       1. Server Components are the default in apps that uses RSC architecture, like Next.js
-      2. if we want to use Client Components, we need to specify a component is a client component with "use client"
-        the child components of Client Components don't need "use client" again.
-          The reason for this is because "use client" don't mark the a Client Component, it creates a Server-Client Boundry and form a Client sub tree for the current component and all of its child components. 
+      2. if we want to use Client Components, we need to specify a component is a client component with "use client" directive
+        the child components of Client Components don't need "use client" directive again.
+          The reason for this is because "use client" directive don't mark the a Client Component, it creates a Server-Client Boundry and form a Client sub tree for the current component and all of its child components. 
     Example for the difference check the images
+    Server Actions:
+      WHY?
+        before server components can only fetch data. 
+        With this we can allow the user to interact with the data and do mutations
+        THIS opens the way for interaction between the data in server components and the users
+      What is it?
+        they are not simple asyncs function run exclusively on the server and perform mutations to data
+      How to use it?
+        we just need to add "use server" directive to the top of the file or a specific funtion
+          "use server" directive allows the client to talk to the server, like an API endpoint
+          unlike "use client" directive which allows the server to talk to the client, like a <script> tag
+        1. [recommended] we can create a standalone file to store all the server actions then export them to the rest of the application
+          this allows all the mutations to be stored in one central place
+        2. we can also use it in server components and also pass them to client components as props
+      How it work?
+        Next.js will create a API endpoint with URL for each Server Action
+        Only the URL will ever be send to the client, the code of Server Actions will always stay in the server
+          this makes it safe to use secret keys and the other information in the code, since these codes will next be leaked to the browser
+        whenever a server action is called, a POST resquest is made to the endpoint, and all the inputs for the request will be serialized. 
+        BUT as developper we will never see any of this
+        BENEFIT: we won't need to create any APIs or route handlers to mutate data
+        BUT we do need a running web server for this to work, unlike server components, which can be run on runtime
+      How is it use?
+        1. Usually used to handle form submitions
+          which means we can use it as the action attribute of <form>, no matter it is in a server or client component
+        2. they also can be called like regular function in Event handlers and useEffect, only in client components
+      What is it used for?
+        1. we can perform data mutations
+        2. Update data UI with new data and invalidate caches with invalidatePath and invalidateTag
+        3. we can also work with cookies
+        4. we can really work with any code here as long as it is relevent
+        IMPORTANT: we need to treat this like backend codes and assume the inputs are unsafe
   The Server Client Boundary:
     Traditional React:
       The Server is like a Node.js API run in the back
