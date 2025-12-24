@@ -1111,6 +1111,8 @@ How to Use:
     this is a nice to use abstraction to let others to access the data. 
   NOTE: the function name have to be the HTTP Verbs, like GET, POST, etc.
 
+  NEXTAUTH_SECRET use https://generate-secret.vercel.app/32
+
 React Server Component(this is purely React):
   NOTE:
     React Server Components(RSC) are the name of the new React paradigm
