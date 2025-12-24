@@ -1493,7 +1493,7 @@ Middleware:
       we can run code after teh Request BUT for the Response is send back
   How it works?
     middleware will run before every route inthe project
-    we can use matcher to specify the path though
+    we can use matcher to specify the path though, the matcher can assign at which route Middleware will run and where it will not
     We can think it as a chunk of code in every route, BUT it is organized in one place that run before each route
     We need one and only one middleware.js file and it have to be in the root folder(NOT the app folder)
     IMPORTANT: Middleware have to produce a Responds
