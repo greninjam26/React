@@ -1103,6 +1103,14 @@ How to Use:
   We can mimick the production envirment to test out caching with npm run "next build && next start"
     it don't live update the changes though, we need to restart the production server
 
+  We can implement a API endpoint by create a route.js in a folder(route)
+  NOTE: route.js will conflict with page.js, so in each folder there can be only one of them
+  this is because we can't send HTML and JSON data at the same time
+  Benefit:
+    we can allow others to access the data in the application or database in a custom way without worrying about important KEY or information from the original data source being leaked
+    this is a nice to use abstraction to let others to access the data. 
+  NOTE: the function name have to be the HTTP Verbs, like GET, POST, etc.
+
 React Server Component(this is purely React):
   NOTE:
     React Server Components(RSC) are the name of the new React paradigm
